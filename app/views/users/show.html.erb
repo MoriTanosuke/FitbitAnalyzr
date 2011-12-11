@@ -11,10 +11,9 @@
 </p>
 
 <p>
-  <b>Oauth:</b>
-  <%= @user.oauth %>
+  <b>Fitbit token:</b>
+  <%= @user.fitbit.token %>
 </p>
-
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

@@ -4,6 +4,11 @@
 <% end %>
 <p>Welcome to this brand new page.</p>
 <% if session[:user_id] != nil %>
+<% if User.find_by_id(session[:user_id]).fitbit == nil %>
+<p><%= image_tag "/logos/fitbit_logo_dark_100px.png" %> <%= button_to 'Connect to fitbit', oauth_consumers_path + "/fitbit" %>
+<% else %>
+<p><%= image_tag "/logos/fitbit_logo_dark_100px.png" %> You're connected.</p>
+<% end %>
 <%= button_to 'Logout', logout_path, :method => 'delete' %>
 <% else %>
 <%= button_to 'Log in', login_path %>

@@ -12,7 +12,7 @@ Fitbit::Application.routes.draw do
   get "admin" => "admin#index"
 
   resources :users
-
+  
   controller :sessions do
     get 'login' => :new
     post 'login' => :create

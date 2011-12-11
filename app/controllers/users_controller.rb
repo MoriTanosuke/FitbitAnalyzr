@@ -80,4 +80,16 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def forget_fitbit
+    @user = User.find(params[:id])
+
+    if @user.fitbit.delete
+      puts "Fitbit token deleted for user=#{@user.id}"
+    else
+      puts "Fitbit token not deleted for user=#{@user.id}"
+    end
+
+    redirect_to users_url
+  end
 end
