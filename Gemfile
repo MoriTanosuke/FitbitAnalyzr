@@ -13,8 +13,6 @@ gem 'therubyracer'
 
 gem "oauth-plugin", ">= 0.4.0.pre1"
 
-#gem 'pg'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
