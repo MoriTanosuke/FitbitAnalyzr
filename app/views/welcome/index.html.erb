@@ -1,2 +1,10 @@
 <h1>Fitbit</h1>
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
 <p>Welcome to this brand new page.</p>
+<% if session[:user_id] != nil %>
+<%= button_to 'Logout', logout_path, :method => 'delete' %>
+<% else %>
+<%= button_to 'Log in', login_path %>
+<% end %>
