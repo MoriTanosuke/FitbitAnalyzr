@@ -12,7 +12,7 @@ class OauthConsumersController < ApplicationController
   end
   
   def callback
-  	super
+    super
   end
   
   def client

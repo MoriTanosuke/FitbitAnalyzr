@@ -67,11 +67,12 @@ OAUTH_CREDENTIALS={
     :key=>"8d86ccdaa04543deaaa781e5f684ea5f",
     :secret=>"bb470f43bf734c8cb664ed782ebfc15d",
     :options=>{
-      :site=>"http://api.fitbit.com"
+      :site=>"http://api.fitbit.com",
+      :scheme=>:header,
     },
-    :client=>:oauth_gem, # :twitter_gem or :oauth_gem (defaults to :twitter_gem)
-    :expose => true, # expose client at /oauth_consumers/twitter/client see docs
-    :allow_login => false # Use :allow_login => true to allow user to login to account
+    :client=>:oauth_gem,
+    :expose => true,
+    :allow_login => false
    },
 } unless defined? OAUTH_CREDENTIALS
 
