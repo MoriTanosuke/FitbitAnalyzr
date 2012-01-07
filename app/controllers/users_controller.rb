@@ -59,6 +59,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
+      # TODO check if fitbit token should be removed
       if @user.update_attributes(params[:user])
         format.html { redirect_to users_url, :notice => "User #{@user.name} was successfully updated." }
         format.json { head :ok }
@@ -79,17 +80,5 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :ok }
     end
-  end
-
-  def forget_fitbit
-    @user = User.find(params[:id])
-
-    if @user.fitbit.delete
-      puts "Fitbit token deleted for user=#{@user.id}"
-    else
-      puts "Fitbit token not deleted for user=#{@user.id}"
-    end
-
-    redirect_to users_url
   end
 end

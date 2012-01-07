@@ -8,6 +8,7 @@ Fitbit::Application.routes.draw do
   end
 
   get "welcome/index"
+  get "welcome/authorize"
 
   get "admin" => "admin#index"
 
