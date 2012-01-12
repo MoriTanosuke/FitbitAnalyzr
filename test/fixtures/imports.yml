@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+not_authorized:
+  user: MyString
+  date: 2012-01-08
+  data: MyText
+
+two:
+  user: MyString
+  date: 2012-01-08
+  data: MyText
