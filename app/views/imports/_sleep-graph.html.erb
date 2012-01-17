@@ -1,0 +1,19 @@
+<div id="import-sleep-<%= import.date %>"></div>
+<%= javascript_include_tag "https://www.google.com/jsapi" %>
+<script type="text/javascript">
+google.load('visualization', '1.0', {'packages':['corechart']});
+google.setOnLoadCallback(drawChart);
+function drawChart() {
+  var options = {'title':'Sleep over time'};
+  var chart = new google.visualization.LineChart(document.getElementById('import-sleep-<%= import.date %>'));
+  var data = new google.visualization.DataTable();
+  data.addColumn('string', 'Date');
+  data.addColumn('number', 'Awake');
+  var d = <%= import.data.html_safe %>;
+  for(var row in d["sleep-awakeningsCount"]) { 
+    data.addRow([d["sleep-awakeningsCount"][row]["dateTime"], parseFloat(d["sleep-awakeningsCount"][row]["value"])]);
+    chart.draw(data, options);
+  }
+}
+</script>
+

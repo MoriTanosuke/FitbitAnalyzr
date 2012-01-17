@@ -43,8 +43,8 @@ class ImportsController < ApplicationController
   # POST /imports.json
   def create
     @import = Import.new(params[:import])
-
-    @import.data = current_user.fitbit.client.get('/1/user/-/body/weight/date/' + today + '/' + @import.range + '.json').body
+    
+    @import.data = reload(@import.range)
 
     respond_to do |format|
       if @import.save
@@ -62,8 +62,7 @@ class ImportsController < ApplicationController
   def update
     @import = Import.find(params[:id])
 
-
-    @import.data = current_user.fitbit.client.get('/1/user/-/body/weight/date/' + today + '/' + @import.range + '.json').body
+    @import.data = reload(@import.range)
 
     respond_to do |format|
       if @import.update_attributes(params[:import])
@@ -86,5 +85,11 @@ class ImportsController < ApplicationController
       format.html { redirect_to imports_url }
       format.json { head :ok }
     end
+  end
+
+  def reload(range)
+    weight = ActiveSupport::JSON.decode(current_user.fitbit.client.get('/1/user/-/body/weight/date/' + today + '/' + range + '.json').body)
+    sleep = ActiveSupport::JSON.decode(current_user.fitbit.client.get('/1/user/-/sleep/awakeningsCount/date/' + today + '/' + range + '.json').body)
+    weight.merge(sleep).to_json
   end
 end
