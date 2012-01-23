@@ -1,4 +1,6 @@
 Fitbit::Application.routes.draw do
+  resources :sleeps
+
   resources :imports
 
   resources :oauth_consumers do

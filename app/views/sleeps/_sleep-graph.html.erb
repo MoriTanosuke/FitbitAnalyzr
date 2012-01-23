@@ -5,13 +5,13 @@ google.load('visualization', '1.0', {'packages':['corechart']});
 google.setOnLoadCallback(drawChart);
 function drawChart() {
   var options = {'title':'Sleep over time'};
-  var chart = new google.visualization.LineChart(document.getElementById('import-sleep-<%= import.date %>'));
+  var chart = new google.visualization.ColumnChart(document.getElementById('import-sleep-<%= import.date %>'));
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Date');
   data.addColumn('number', 'Awake');
   var d = <%= import.data.html_safe %>;
-  for(var row in d["sleep-awakeningsCount"]) { 
-    data.addRow([d["sleep-awakeningsCount"][row]["dateTime"], parseFloat(d["sleep-awakeningsCount"][row]["value"])]);
+  for(var row in d["sleep"]) { 
+    data.addRow(['<%= import.date %>', parseFloat(d["sleep"][row]["duration"])]);
     chart.draw(data, options);
   }
 }

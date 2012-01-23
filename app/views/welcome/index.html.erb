@@ -10,10 +10,26 @@
   <% else %>
     <p><%= image_tag "/logos/fitbit_logo_dark_100px.png" %></p>
     <p>You're connected. Your last sync was at <span class="lastSync"><%= @lastSync %></span> and your battery is <span class="battery"><%= @battery %>.</p>
-    <p><%= link_to 'Start import', new_import_path %>
+    <p><%= link_to 'Sleep', sleeps_path %>
     <p><%= button_to 'Disconnect', users_path + "/forget_fitbit" %>
   <% end %>
   <%= button_to 'Logout', logout_path, :method => 'delete' %>
 <% else %>
   <%= button_to 'Log in', login_path %>
 <% end %>
+
+<h2>What you can do:</h2>
+<ul>
+<li>Login/Logout</li>
+<li>Connect to fitbit</li>
+<li>Disconnect fitbit</li>
+<li>Import sleep</li>
+</ul>
+
+<h2> What you can't do (yet):</h2>
+<ul>
+<li>Import all other data</li>
+<li>Apply tags to days</li>
+<li>Display several charts into one huge chart</li>
+</ul>
+

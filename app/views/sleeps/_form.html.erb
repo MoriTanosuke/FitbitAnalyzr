@@ -1,0 +1,25 @@
+<%= form_for(@sleep) do |f| %>
+  <% if @sleep.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sleep.errors.count, "error") %> prohibited this sleep from being saved:</h2>
+
+      <ul>
+      <% @sleep.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :data %><br />
+    <%= f.text_field :data %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

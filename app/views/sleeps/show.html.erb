@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @sleep.date %>
+</p>
+
+<p>
+  <b>Data:</b>
+  <%= render :partial => "sleep-graph", :locals => {:import => @sleep} %>
+</p>
+
+
+<%= link_to 'Edit', edit_sleep_path(@sleep) %> |
+<%= link_to 'Back', sleeps_path %>

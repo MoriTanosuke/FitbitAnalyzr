@@ -89,7 +89,6 @@ class ImportsController < ApplicationController
 
   def reload(range)
     weight = ActiveSupport::JSON.decode(current_user.fitbit.client.get('/1/user/-/body/weight/date/' + today + '/' + range + '.json').body)
-    sleep = ActiveSupport::JSON.decode(current_user.fitbit.client.get('/1/user/-/sleep/awakeningsCount/date/' + today + '/' + range + '.json').body)
-    weight.merge(sleep).to_json
+    weight.to_json
   end
 end
