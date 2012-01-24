@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124194900) do
+ActiveRecord::Schema.define(:version => 20120124200744) do
 
   create_table "consumer_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20120124194900) do
 
   create_table "sleeps", :force => true do |t|
     t.date     "date"
-    t.string   "data"
+    t.text     "data",                :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "duration"
