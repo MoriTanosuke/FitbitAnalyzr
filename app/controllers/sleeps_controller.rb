@@ -42,7 +42,18 @@ class SleepsController < ApplicationController
   def create
     @sleep = Sleep.new(params[:sleep])
 
-    @sleep.data = reload(@sleep.date)
+    data = reload(@sleep.date)
+    @sleep.data = data
+    sleep = JSON(data)['sleep'][0]
+    @sleep.duration = sleep['duration']
+    @sleep.awakeningscount = sleep['awakeningsCount']
+    @sleep.minutesToFallAsleep = sleep['minutesToFallAsleep']
+    @sleep.efficiency = sleep['efficiency']
+    @sleep.minutesAsleep = sleep['minutesAsleep']
+    @sleep.timeInBed = sleep['timeInBed']
+    @sleep.startTime = sleep['startTime'].to_s
+    @sleep.minutesAwake = sleep['minutesAwake']
+    @sleep.minutesAfterWakeup = sleep['minutesAfterWakeup']
 
     respond_to do |format|
       if @sleep.save
@@ -60,7 +71,19 @@ class SleepsController < ApplicationController
   def update
     @sleep = Sleep.find(params[:id])
 
-    @sleep.data = reload(@sleep.date)
+    data = reload(@sleep.date)
+    @sleep.data = data
+    sleep = JSON(data)['sleep'][0]
+    @sleep.duration = sleep['duration']
+    @sleep.awakeningscount = sleep['awakeningsCount']
+    @sleep.minutesToFallAsleep = sleep['minutesToFallAsleep']
+    @sleep.efficiency = sleep['efficiency']
+    @sleep.minutesAsleep = sleep['minutesAsleep']
+    @sleep.timeInBed = sleep['timeInBed']
+    @sleep.startTime = sleep['startTime'].to_s
+    @sleep.minutesAwake = sleep['minutesAwake']
+    @sleep.minutesAfterWakeup = sleep['minutesAfterWakeup']
+
 
     respond_to do |format|
       if @sleep.update_attributes(params[:sleep])
@@ -86,7 +109,7 @@ class SleepsController < ApplicationController
   end
 
   def reload(range)
-    sleep = ActiveSupport::JSON.decode(current_user.fitbit.client.get('/1/user/-/sleep/date/' + today + '.json').body)
-    sleep.to_json
+    (current_user.fitbit.client.get('/1/user/-/sleep/date/' + today + '.json').body).as_json
   end
 end
+

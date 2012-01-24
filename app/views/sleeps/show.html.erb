@@ -6,10 +6,53 @@
 </p>
 
 <p>
-  <b>Data:</b>
-  <%= render :partial => "sleep-graph", :locals => {:import => @sleep} %>
+  <b>Duration:</b>
+  <%= @sleep.duration %>
 </p>
 
+<p>
+  <b>Awakenings Count:</b>
+  <%= @sleep.awakeningscount %>
+</p>
+
+<p>
+  <b>Efficiency:</b>
+  <%= @sleep.efficiency %>
+</p>
+
+<p>
+  <b>Minutes To Fall Asleep:</b>
+  <%= @sleep.minutesToFallAsleep %>
+</p>
+
+<p>
+  <b>Minutes Asleep:</b>
+  <%= @sleep.minutesAsleep %>
+</p>
+
+<p>
+  <b>Minutes Awake:</b>
+  <%= @sleep.minutesAwake %>
+</p>
+
+<p>
+  <b>Minutes After Wakeup:</b>
+  <%= @sleep.minutesAfterWakeup %>
+</p>
+
+<p>
+  <b>Start Time:</b>
+  <%= @sleep.startTime %>
+</p>
+
+<p>
+  <b>Time in bed:</b>
+  <%= @sleep.timeInBed %>
+</p>
+
+<!--
+<%= @sleep.data.html_safe %>
+-->
 
 <%= link_to 'Edit', edit_sleep_path(@sleep) %> |
 <%= link_to 'Back', sleeps_path %>

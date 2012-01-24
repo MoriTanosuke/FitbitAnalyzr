@@ -3,7 +3,8 @@
 <table>
   <tr>
     <th>Date</th>
-    <th>Data</th>
+    <th>Duration</th>
+    <th>Efficiency</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,7 +13,8 @@
 <% @sleeps.each do |sleep| %>
   <tr>
     <td><%= sleep.date %></td>
-    <td><%= render :partial => "sleep-graph", :locals => {:import => sleep} %></td>
+    <td><%= sleep.duration %></td>
+    <td><%= sleep.efficiency %>%</td>
     <td><%= link_to 'Show', sleep %></td>
     <td><%= link_to 'Edit', edit_sleep_path(sleep) %></td>
     <td><%= link_to 'Destroy', sleep, :confirm => 'Are you sure?', :method => :delete %></td>
