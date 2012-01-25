@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124200744) do
+ActiveRecord::Schema.define(:version => 20120125170133) do
 
   create_table "consumer_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(:version => 20120124200744) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "range"
+  end
+
+  create_table "measurements", :force => true do |t|
+    t.date     "date"
+    t.text     "data"
+    t.decimal  "bmi"
+    t.decimal  "fat"
+    t.decimal  "weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sleeps", :force => true do |t|

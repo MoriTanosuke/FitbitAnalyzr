@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @measurement.date %>
+</p>
+
+<p>
+  <b>Data:</b>
+  <%= @measurement.data %>
+</p>
+
+<p>
+  <b>Bmi:</b>
+  <%= @measurement.bmi %>
+</p>
+
+<p>
+  <b>Fat:</b>
+  <%= @measurement.fat %>
+</p>
+
+<p>
+  <b>Weight:</b>
+  <%= @measurement.weight %>
+</p>
+
+
+<%= link_to 'Edit', edit_measurement_path(@measurement) %> |
+<%= link_to 'Back', measurements_path %>

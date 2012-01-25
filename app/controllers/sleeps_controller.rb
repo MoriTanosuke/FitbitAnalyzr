@@ -108,8 +108,8 @@ class SleepsController < ApplicationController
     end
   end
 
-  def reload(range)
-    (current_user.fitbit.client.get('/1/user/-/sleep/date/' + today + '.json').body).as_json
+  def reload(date)
+    (current_user.fitbit.client.get('/1/user/-/sleep/date/' + str(date) + '.json').body).as_json
   end
 end
 

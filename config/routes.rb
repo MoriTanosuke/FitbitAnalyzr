@@ -1,4 +1,6 @@
 Fitbit::Application.routes.draw do
+  resources :measurements
+
   resources :sleeps
 
   resources :imports

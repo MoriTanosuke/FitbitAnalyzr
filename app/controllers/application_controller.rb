@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     end
 
     def today
-      Time.now.strftime('%Y-%m-%d')
+      str(Time.now)
+    end
+
+    def str(date)
+      date.strftime('%Y-%m-%d')
     end
 end

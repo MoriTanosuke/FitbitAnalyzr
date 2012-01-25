@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date: 2012-01-25 17:51:20
+  data: MyText
+  bmi: 
+  fat: 
+  weight: 
+
+two:
+  date: 2012-01-25 17:51:20
+  data: MyText
+  bmi: 
+  fat: 
+  weight: 
