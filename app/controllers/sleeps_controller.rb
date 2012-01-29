@@ -73,16 +73,20 @@ class SleepsController < ApplicationController
 
     data = reload(@sleep.date)
     @sleep.data = data
-    sleep = JSON(data)['sleep'][0]
-    @sleep.duration = sleep['duration']
-    @sleep.awakeningscount = sleep['awakeningsCount']
-    @sleep.minutesToFallAsleep = sleep['minutesToFallAsleep']
-    @sleep.efficiency = sleep['efficiency']
-    @sleep.minutesAsleep = sleep['minutesAsleep']
-    @sleep.timeInBed = sleep['timeInBed']
-    @sleep.startTime = sleep['startTime'].to_s
-    @sleep.minutesAwake = sleep['minutesAwake']
-    @sleep.minutesAfterWakeup = sleep['minutesAfterWakeup']
+    s = JSON(data)
+    # TODO sleep could be nil! if nothing was logged
+    if not s['sleep'].blank?
+      sleep = s['sleep'][0]
+      @sleep.duration = sleep['duration']
+      @sleep.awakeningscount = sleep['awakeningsCount']
+      @sleep.minutesToFallAsleep = sleep['minutesToFallAsleep']
+      @sleep.efficiency = sleep['efficiency']
+      @sleep.minutesAsleep = sleep['minutesAsleep']
+      @sleep.timeInBed = sleep['timeInBed']
+      @sleep.startTime = sleep['startTime'].to_s
+      @sleep.minutesAwake = sleep['minutesAwake']
+      @sleep.minutesAfterWakeup = sleep['minutesAfterWakeup']
+    end
 
 
     respond_to do |format|

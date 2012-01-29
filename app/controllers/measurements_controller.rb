@@ -44,10 +44,14 @@ class MeasurementsController < ApplicationController
 
     data = reload(@measurement.date)
     @measurement.data = data
-    m = JSON(data)['body']
-    @measurement.weight = m['weight']
-    @measurement.bmi = m['bmi']
-    @measurement.fat = m['fat']
+    m = JSON(data)
+    # TODO body could be nil! if nothing was logged
+    if not m['body'].nil?
+      body = m['body']
+      @measurement.weight = body['weight']
+      @measurement.bmi = m['bmi']
+      @measurement.fat = m['fat']
+    end
 
     respond_to do |format|
       if @measurement.save
