@@ -5,8 +5,6 @@
     <p><%= image_tag "/logos/fitbit_logo_dark_100px.png" %></p>
    <p><%= button_to 'Disconnect', users_path + "/forget_fitbit" %></p>
   <% end %>
-<% else %>
-  <%= button_to 'Log in', login_path %>
 <% end %>
 
 <h2>What you can do:</h2>

@@ -41,15 +41,23 @@
   <li><%= link_to 'Home', root_path %></li>
   <li><%= link_to 'Sleep', sleeps_path %></li>
   <li><%= link_to 'Measurement', measurements_path %></li>
-  <li><%= button_to 'Logout', logout_path, :method => 'delete' %></li>
+<% if session[:user_id] != nil %>
+  <li><%= link_to 'Logout', logout_path, :method => 'delete' %></li>
+<% else %>
+  <li><%= link_to 'Log in', login_path %></li>
+<% end %>
 </ul>
+<% if session[:user_id] != nil %>
 <div id="lastsync">You're connected. Your last sync was at <span class="lastSync"><%= @lastSync %></span> and your battery is <span class="battery"><%= @battery %>.</div>
+<% end %>
+<div id="top"></div>
     </header>
     <div id="main" role="main">
 <%= yield %>
     </div>
     <footer>
-<p>made by <a href="http://www.kopis.de/">Carsten Ringe</a></p>
+<h1>fitbit analyzr</h1>
+<p class="gray">made in germany</p>
     </footer>
   </div> <!--! end of #container -->
 

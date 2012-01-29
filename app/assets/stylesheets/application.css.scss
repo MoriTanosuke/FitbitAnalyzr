@@ -5,6 +5,7 @@
  *= require_self
  *= require_tree . 
 */
+
 /* 
  * HTML5 ✰ Boilerplate
  *
@@ -297,3 +298,40 @@ td { vertical-align: top; }
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3 { page-break-after: avoid; }
 }
+
+/** my own definition **/
+#main {
+}
+
+header,footer {
+  text-align: center;
+  color: #efefef;
+  background: #606060;
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: block;
+      padding: 2px;
+      margin: 2px;
+    }
+
+    a,a:visited {
+      color: #efefef;
+    }
+  }
+}
+
+a,a:visited {
+  color: #efefef;
+}
+
+.gray {
+  color: #303030;
+}
+
