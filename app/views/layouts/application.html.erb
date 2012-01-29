@@ -8,7 +8,36 @@
 </head>
 <body>
 
+<div id="container">
+<header>
+<h1>Fitbit</h1>
+</header>
+
+<div id="main" role="main">
+
+<div id="sidebar" role="nav">
+<ul>
+    <li><%= link_to 'Home', root_path %></li>
+    <li><%= link_to 'Sleep', sleeps_path %></li>
+    <li><%= link_to 'Measurement', measurements_path %></li>
+    <li><%= button_to 'Logout', logout_path, :method => 'delete' %></li>
+</ul>
+</div>
+
+<% if notice %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
+<div id="lastsync">You're connected. Your last sync was at <span class="lastSync"><%= @lastSync %></span> and your battery is <span class="battery"><%= @battery %>.</div>
+
 <%= yield %>
+</div>
+
+<footer>
+<div>made by <a href="http://www.kopis.de/">Carsten Ringe</a></div>
+</footer>
+
+</div>
 
 </body>
 </html>

@@ -5,3 +5,20 @@
  *= require_self
  *= require_tree . 
 */
+body {
+  background: blue;
+}
+header {
+  background: green;
+}
+footer {
+  background: green;
+}
+
+#main {
+  background: yellow;
+}
+
+#sidebar {
+  background: red;
+}

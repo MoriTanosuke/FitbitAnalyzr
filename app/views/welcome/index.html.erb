@@ -1,20 +1,11 @@
-<h1>Fitbit</h1>
-<% if notice %>
-  <p id="notice"><%= notice %></p>
-<% end %>
-
 <p>Welcome to this brand new page.</p>
 <% if session[:user_id] != nil %>
   <% if User.find_by_id(session[:user_id]).fitbit == nil %>
     <p><%= image_tag "/logos/fitbit_logo_dark_100px.png" %> <%= button_to 'Connect to fitbit', oauth_consumers_path + "/fitbit", :method => 'get' %>
   <% else %>
     <p><%= image_tag "/logos/fitbit_logo_dark_100px.png" %></p>
-    <p>You're connected. Your last sync was at <span class="lastSync"><%= @lastSync %></span> and your battery is <span class="battery"><%= @battery %>.</p>
-    <p><%= link_to 'Sleep', sleeps_path %>
-    <p><%= link_to 'Measurement', measurements_path %>
-    <p><%= button_to 'Disconnect', users_path + "/forget_fitbit" %>
+   <p><%= button_to 'Disconnect', users_path + "/forget_fitbit" %></p>
   <% end %>
-  <%= button_to 'Logout', logout_path, :method => 'delete' %>
 <% else %>
   <%= button_to 'Log in', login_path %>
 <% end %>
