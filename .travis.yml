@@ -3,10 +3,6 @@ rvm:
 
 before_script: "./spec/ci/before_script"
 
-script:
-
-env:
-
 notifications:
   recipients:
     - carsten@kopis.de
