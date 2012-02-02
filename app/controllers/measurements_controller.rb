@@ -44,9 +44,9 @@ class MeasurementsController < ApplicationController
 
     data = reload(@measurement.date)
     @measurement.data = data
-    m = JSON(data)
     # TODO body could be nil! if nothing was logged
-    if not m['body'].nil?
+    if not data.nil? and not m['body'].nil?
+      m = JSON(data)
       body = m['body']
       @measurement.weight = body['weight']
       @measurement.bmi = m['bmi']
@@ -93,6 +93,8 @@ class MeasurementsController < ApplicationController
   end
 
   def reload(date)
-    (current_user.fitbit.client.get('/1/user/-/body/date/' + str(date) + '.json').body).as_json
+    if not current_user.fitbit.nil?
+      (current_user.fitbit.client.get('/1/user/-/body/date/' + str(date) + '.json').body).as_json
+    end
   end
 end

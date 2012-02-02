@@ -44,16 +44,18 @@ class SleepsController < ApplicationController
 
     data = reload(@sleep.date)
     @sleep.data = data
-    sleep = JSON(data)['sleep'][0]
-    @sleep.duration = sleep['duration']
-    @sleep.awakeningscount = sleep['awakeningsCount']
-    @sleep.minutesToFallAsleep = sleep['minutesToFallAsleep']
-    @sleep.efficiency = sleep['efficiency']
-    @sleep.minutesAsleep = sleep['minutesAsleep']
-    @sleep.timeInBed = sleep['timeInBed']
-    @sleep.startTime = sleep['startTime'].to_s
-    @sleep.minutesAwake = sleep['minutesAwake']
-    @sleep.minutesAfterWakeup = sleep['minutesAfterWakeup']
+    if not data.nil? and not s['sleep'].blank?
+      sleep = JSON(data)['sleep'][0]
+      @sleep.duration = sleep['duration']
+      @sleep.awakeningscount = sleep['awakeningsCount']
+      @sleep.minutesToFallAsleep = sleep['minutesToFallAsleep']
+      @sleep.efficiency = sleep['efficiency']
+      @sleep.minutesAsleep = sleep['minutesAsleep']
+      @sleep.timeInBed = sleep['timeInBed']
+      @sleep.startTime = sleep['startTime'].to_s
+      @sleep.minutesAwake = sleep['minutesAwake']
+      @sleep.minutesAfterWakeup = sleep['minutesAfterWakeup']
+    end
 
     respond_to do |format|
       if @sleep.save
@@ -73,9 +75,9 @@ class SleepsController < ApplicationController
 
     data = reload(@sleep.date)
     @sleep.data = data
-    s = JSON(data)
     # TODO sleep could be nil! if nothing was logged
-    if not s['sleep'].blank?
+    if not data.nil? and not s['sleep'].blank?
+      s = JSON(data)
       sleep = s['sleep'][0]
       @sleep.duration = sleep['duration']
       @sleep.awakeningscount = sleep['awakeningsCount']
@@ -113,7 +115,9 @@ class SleepsController < ApplicationController
   end
 
   def reload(date)
-    (current_user.fitbit.client.get('/1/user/-/sleep/date/' + str(date) + '.json').body).as_json
+    if not current_user.fitbit.nil?
+      (current_user.fitbit.client.get('/1/user/-/sleep/date/' + str(date) + '.json').body).as_json
+    end
   end
 end
 

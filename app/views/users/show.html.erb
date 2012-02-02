@@ -12,7 +12,9 @@
 
 <p>
   <b>Fitbit token:</b>
+  <% if not @user.fitbit.nil? %>
   <%= @user.fitbit.token %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |

@@ -2,8 +2,8 @@
 
 one:
   date: 2012-01-23
-  data: MyString
+  data: 
 
 two:
   date: 2012-01-23
-  data: MyString
+  data: 

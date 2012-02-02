@@ -2,14 +2,14 @@
 
 one:
   date: 2012-01-25 17:51:20
-  data: MyText
+  data:
   bmi: 
   fat: 
   weight: 
 
 two:
   date: 2012-01-25 17:51:20
-  data: MyText
+  data:
   bmi: 
   fat: 
   weight: 

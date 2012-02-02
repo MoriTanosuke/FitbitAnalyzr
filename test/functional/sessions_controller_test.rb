@@ -9,7 +9,7 @@ class SessionsControllerTest < ActionController::TestCase
   test "should login" do
     dave = users(:one)
     post :create, :name => dave.name, :password => 'secret'
-    assert_redirected_to 'welcome/index'
+    assert_redirected_to '/welcome/index'
     assert_equal dave.id, session[:user_id]
   end
 
@@ -21,6 +21,6 @@ class SessionsControllerTest < ActionController::TestCase
 
   test "should logout" do
     delete :destroy
-    assert_redirected_to 'welcome/index'
+    assert_redirected_to '/welcome/index?notice=Logged+out'
   end
 end
