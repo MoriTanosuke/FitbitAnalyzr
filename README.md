@@ -1,4 +1,9 @@
-[!(https://secure.travis-ci.org/MoriTanosuke/FitbitAnalyzr.png)][0]
+Continuous Integration
+======================
+
+!(https://secure.travis-ci.org/MoriTanosuke/FitbitAnalyzr.png)
+
+[Click here to see our build][0]
 
 
 
