@@ -32,6 +32,9 @@
   <div id="container">
     <header>
 <h1>Fitbit</h1>
+<% if not @user.nil? %>
+<p>Welcome, <span class="username"><%= @user.name %></span></p>
+<% end %>
 <ul>
   <li><%= link_to 'Home', root_path %></li>
   <li><%= link_to 'Sleep', sleeps_path %></li>
@@ -42,10 +45,9 @@
   <li><%= link_to 'Log in', login_path %></li>
 <% end %>
 </ul>
-<% if session[:user_id] != nil %>
-<div id="lastsync">You're connected. Your last sync was at <span class="lastSync"><%= @lastSync %></span> and your battery is <span class="battery"><%= @battery %>.</div>
+<% if not @user.nil? %>
+<p>You're connected. Your last sync was at <span class="lastSync"><%= @lastSync %></span> and your battery is <span class="battery"><%= @battery %>.</span></p>
 <% end %>
-<div id="top"></div>
     </header>
     <div id="main" role="main">
 <%= yield %>

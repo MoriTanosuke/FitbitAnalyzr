@@ -5,6 +5,7 @@
  *= require_self
  *= require_tree . 
 */
+@import url(http://fonts.googleapis.com/css?family=Quicksand:700);
 
 /* 
  * HTML5 ✰ Boilerplate
@@ -300,6 +301,10 @@ td { vertical-align: top; }
 }
 
 /** my own definition **/
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Quicksand', sans-serif;
+}
+
 #main {
 }
 
