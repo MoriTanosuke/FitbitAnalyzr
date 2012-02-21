@@ -9,7 +9,12 @@ $(document).ready(function() {
          yAxis: { title: { text: 'kg' } },
          series: [{
             name: 'Weight',
-            data: [<% measurements.each do |measurement| %><%= measurement.weight %>,<% end %>]
+            data: [<%
+measurements.each do |measurement|
+  if not measurement.weight.blank?
+  %><%= measurement.weight %>,<%
+  end
+end %>]
          }]
       });
    });

@@ -77,7 +77,7 @@ class SleepsController < ApplicationController
   def update
     @sleep = Sleep.find(params[:id])
 
-    data = reload(sleep.date)
+    data = reload(@sleep.date)
     @sleep.data = data
     # TODO sleep could be nil! if nothing was logged
     if not data.nil? and not s['sleep'].blank?

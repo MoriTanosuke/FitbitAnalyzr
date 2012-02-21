@@ -17,8 +17,8 @@
 <% @sleeps.each do |sleep| %>
   <tr>
     <th><%= sleep.date %></th>
-    <td><%= sleep.duration/36000/100.0 %></td>
-    <td><%= sleep.minutesAsleep*10/6/100.0 %></td>
+    <td><% if not sleep.duration.blank? %><%= sleep.duration/36000/100.0 %><% end %></td>
+    <td><% if not sleep.minutesAsleep.blank? %><%= sleep.minutesAsleep*10/6/100.0 %><% end %></td>
     <td><%= link_to 'Show', sleep %>
     <%= link_to 'Edit', edit_sleep_path(sleep) %>
     <%= link_to 'Destroy', sleep, :confirm => 'Are you sure?', :method => :delete %></td>

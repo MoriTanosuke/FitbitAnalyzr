@@ -9,10 +9,20 @@ $(document).ready(function() {
          yAxis: { title: { text: 'Hours' } },
          series: [{
             name: 'Duration',
-            data: [<% sleeps.each do |sleep| %><%= sleep.duration*10/360000/100.0 %>,<% end %>]
+            data: [<%
+sleeps.each do |sleep|
+  if not sleep.duration.blank?
+  %><%= sleep.duration*10/360000/100.0 %>,<%
+  end
+end %>]
          },{
             name: 'Asleep',
-            data: [<% sleeps.each do |sleep| %><%= sleep.minutesAsleep*10/6/100.0 %>,<% end %>]
+            data: [<%
+sleeps.each do |sleep|
+  if not sleep.minutesAsleep.blank?
+  %><%= sleep.minutesAsleep*10/6/100.0 %>,<%
+  end
+end %>]
          }]
       });
    });
