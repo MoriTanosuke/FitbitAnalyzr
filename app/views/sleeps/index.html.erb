@@ -2,26 +2,29 @@
 
 <%= render :partial => "sleep-graph", :locals => {:sleeps => @sleeps} %>
 
-<table>
+<table class="sleep-data">
+<caption>Sleep over time</caption>
+<thead>
   <tr>
     <th>Date</th>
     <th>Duration</th>
-    <th>Efficiency</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Hours Asleep</th>
+    <td></td>
   </tr>
+</thead>
 
+<tbody>
 <% @sleeps.each do |sleep| %>
   <tr>
-    <td><%= sleep.date %></td>
-    <td><%= sleep.duration %></td>
-    <td><%= sleep.efficiency %>%</td>
-    <td><%= link_to 'Show', sleep %></td>
-    <td><%= link_to 'Edit', edit_sleep_path(sleep) %></td>
-    <td><%= link_to 'Destroy', sleep, :confirm => 'Are you sure?', :method => :delete %></td>
+    <th><%= sleep.date %></th>
+    <td><%= sleep.duration/36000/100.0 %></td>
+    <td><%= sleep.minutesAsleep*10/6/100.0 %></td>
+    <td><%= link_to 'Show', sleep %>
+    <%= link_to 'Edit', edit_sleep_path(sleep) %>
+    <%= link_to 'Destroy', sleep, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 <br />

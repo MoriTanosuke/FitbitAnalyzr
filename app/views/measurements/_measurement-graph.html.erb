@@ -1,20 +1,16 @@
 <div id="measurement-graph"></div>
-<%= javascript_include_tag "https://www.google.com/jsapi" %>
 <script type="text/javascript">
-google.load('visualization', '1.0', {'packages':['corechart']});
-google.setOnLoadCallback(drawChart);
-function drawChart() {
-  var options = {'title':'Measurements over time'};
-  var chart = new google.visualization.LineChart(document.getElementById('measurement-graph'));
-  var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Date');
-  data.addColumn('number', 'Weight');
-<% measurements.sort.each do |measurement|
-  if not measurement.weight.blank?  %>
-  data.addRow(['<%= measurement.date %>', <%= measurement.weight %>]);
-<% end
-end %>
-  chart.draw(data, options);
-}
+var chart1; // globally available
+$(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+         chart: { renderTo: 'measurement-graph', type: 'line' },
+         title: { text: 'Measurements over time' },
+         xAxis: { categories: ['Weight'] },
+         yAxis: { title: { text: 'kg' } },
+         series: [{
+            name: 'Weight',
+            data: [<% measurements.each do |measurement| %><%= measurement.weight %>,<% end %>]
+         }]
+      });
+   });
 </script>
-

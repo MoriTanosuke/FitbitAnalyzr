@@ -1,23 +1,19 @@
 <div id="sleep-graph"></div>
-<%= javascript_include_tag "https://www.google.com/jsapi" %>
 <script type="text/javascript">
-google.load('visualization', '1.0', {'packages':['corechart']});
-google.setOnLoadCallback(drawChart);
-function drawChart() {
-  var options = {'title':'Sleep over time'};
-  var chart = new google.visualization.LineChart(document.getElementById('sleep-graph'));
-  var data = new google.visualization.DataTable();
-  data.addColumn('string', 'Date');
-  data.addColumn('number', 'Duration');
-  data.addColumn('number', 'Asleep');
-  data.addColumn('number', 'Efficiency');
-<% sleeps.each do |sleep|
-  if not sleep.duration.blank? and not sleep.minutesAsleep.blank?
-%>
-  data.addRow(['<%= sleep.date %>', <%= sleep.duration/3600000.0 %>, <%= sleep.minutesAsleep/60.0 %>, <%= sleep.efficiency %>]);
-<% end
-end %>
-  chart.draw(data, options);
-}
+var chart1; // globally available
+$(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+         chart: { renderTo: 'sleep-graph', type: 'line' },
+         title: { text: 'Sleep over time' },
+         xAxis: { categories: ['Duration', 'Asleep'] },
+         yAxis: { title: { text: 'Hours' } },
+         series: [{
+            name: 'Duration',
+            data: [<% sleeps.each do |sleep| %><%= sleep.duration*10/360000/100.0 %>,<% end %>]
+         },{
+            name: 'Asleep',
+            data: [<% sleeps.each do |sleep| %><%= sleep.minutesAsleep*10/6/100.0 %>,<% end %>]
+         }]
+      });
+   });
 </script>
-

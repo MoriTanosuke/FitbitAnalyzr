@@ -319,11 +319,13 @@ header,footer {
     list-style: none;
     margin: 0;
     padding: 0;
+    float: left;
 
     li {
       display: block;
       padding: 2px;
       margin: 2px;
+      float: left;
     }
 
     a,a:visited {
