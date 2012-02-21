@@ -1,19 +1,23 @@
-<div id="import-sleep-<%= import.date %>"></div>
+<div id="sleep-graph"></div>
 <%= javascript_include_tag "https://www.google.com/jsapi" %>
 <script type="text/javascript">
 google.load('visualization', '1.0', {'packages':['corechart']});
 google.setOnLoadCallback(drawChart);
 function drawChart() {
   var options = {'title':'Sleep over time'};
-  var chart = new google.visualization.ColumnChart(document.getElementById('import-sleep-<%= import.date %>'));
+  var chart = new google.visualization.LineChart(document.getElementById('sleep-graph'));
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Date');
-  data.addColumn('number', 'Awake');
-  var d = <%= import.data.html_safe %>;
-  for(var row in d["sleep"]) { 
-    data.addRow(['<%= import.date %>', parseFloat(d["sleep"][row]["duration"])]);
-    chart.draw(data, options);
-  }
+  data.addColumn('number', 'Duration');
+  data.addColumn('number', 'Asleep');
+  data.addColumn('number', 'Efficiency');
+<% sleeps.each do |sleep|
+  if not sleep.duration.blank? and not sleep.minutesAsleep.blank?
+%>
+  data.addRow(['<%= sleep.date %>', <%= sleep.duration/3600000.0 %>, <%= sleep.minutesAsleep/60.0 %>, <%= sleep.efficiency %>]);
+<% end
+end %>
+  chart.draw(data, options);
 }
 </script>
 

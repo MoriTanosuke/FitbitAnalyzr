@@ -2,7 +2,7 @@ class MeasurementsController < ApplicationController
   # GET /measurements
   # GET /measurements.json
   def index
-    @measurements = Measurement.all
+    @measurements = Measurement.order("date")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -45,12 +45,11 @@ class MeasurementsController < ApplicationController
     data = reload(@measurement.date)
     @measurement.data = data
     # TODO body could be nil! if nothing was logged
-    if not data.nil? and not m['body'].nil?
-      m = JSON(data)
-      body = m['body']
+    if not data.nil? and not data['body'].nil?
+      body = JSON(data)['body']
       @measurement.weight = body['weight']
-      @measurement.bmi = m['bmi']
-      @measurement.fat = m['fat']
+      @measurement.bmi = body['bmi']
+      @measurement.fat = body['fat']
     end
 
     respond_to do |format|

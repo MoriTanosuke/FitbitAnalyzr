@@ -1,5 +1,7 @@
 <h1>Listing sleeps</h1>
 
+<%= render :partial => "sleep-graph", :locals => {:sleeps => @sleeps} %>
+
 <table>
   <tr>
     <th>Date</th>

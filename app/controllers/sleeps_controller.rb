@@ -2,7 +2,7 @@ class SleepsController < ApplicationController
   # GET /sleeps
   # GET /sleeps.json
   def index
-    @sleeps = Sleep.all
+    @sleeps = Sleep.order("date")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -44,8 +44,12 @@ class SleepsController < ApplicationController
 
     data = reload(@sleep.date)
     @sleep.data = data
-    if not data.nil? and not s['sleep'].blank?
+    if not data.blank?
       sleep = JSON(data)['sleep'][0]
+      if sleep.blank?
+        flash[:error] = 'No data found'
+        redirect_to :back
+      end
       @sleep.duration = sleep['duration']
       @sleep.awakeningscount = sleep['awakeningsCount']
       @sleep.minutesToFallAsleep = sleep['minutesToFallAsleep']
@@ -73,7 +77,7 @@ class SleepsController < ApplicationController
   def update
     @sleep = Sleep.find(params[:id])
 
-    data = reload(@sleep.date)
+    data = reload(sleep.date)
     @sleep.data = data
     # TODO sleep could be nil! if nothing was logged
     if not data.nil? and not s['sleep'].blank?

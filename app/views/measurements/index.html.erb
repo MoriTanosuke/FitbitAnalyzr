@@ -1,5 +1,7 @@
 <h1>Listing measurements</h1>
 
+<%= render :partial => "measurement-graph", :locals => {:measurements => @measurements} %>
+
 <table>
   <tr>
     <th>Date</th>
