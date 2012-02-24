@@ -41,6 +41,7 @@ class MeasurementsController < ApplicationController
   # POST /measurements.json
   def create
     @measurement = Measurement.new(params[:measurement])
+    @measurement.user = current_user
 
     data = reload(@measurement.date)
     @measurement.data = data
@@ -93,7 +94,12 @@ class MeasurementsController < ApplicationController
 
   def reload(date)
     if not current_user.fitbit.nil?
-      (current_user.fitbit.client.get('/1/user/-/body/date/' + str(date) + '.json').body).as_json
+      begin
+        (current_user.fitbit.client.get('/1/user/-/body/date/' + str(date) + '.json').body).as_json
+      rescue SocketError
+        logger.error "Can not talk to fitbit"
+        nil
+      end
     end
   end
 end

@@ -41,32 +41,31 @@ class SleepsController < ApplicationController
   # POST /sleeps.json
   def create
     @sleep = Sleep.new(params[:sleep])
+    @sleep.user = current_user
 
     data = reload(@sleep.date)
     @sleep.data = data
     if not data.blank?
       sleep = JSON(data)['sleep'][0]
-      if sleep.blank?
-        flash[:error] = 'No data found'
-        redirect_to :back
+      if not sleep.nil? and not sleep.blank?
+        @sleep.duration = sleep['duration']
+        @sleep.awakeningscount = sleep['awakeningsCount']
+        @sleep.minutesToFallAsleep = sleep['minutesToFallAsleep']
+        @sleep.efficiency = sleep['efficiency']
+        @sleep.minutesAsleep = sleep['minutesAsleep']
+        @sleep.timeInBed = sleep['timeInBed']
+        @sleep.startTime = sleep['startTime'].to_s
+        @sleep.minutesAwake = sleep['minutesAwake']
+        @sleep.minutesAfterWakeup = sleep['minutesAfterWakeup']
       end
-      @sleep.duration = sleep['duration']
-      @sleep.awakeningscount = sleep['awakeningsCount']
-      @sleep.minutesToFallAsleep = sleep['minutesToFallAsleep']
-      @sleep.efficiency = sleep['efficiency']
-      @sleep.minutesAsleep = sleep['minutesAsleep']
-      @sleep.timeInBed = sleep['timeInBed']
-      @sleep.startTime = sleep['startTime'].to_s
-      @sleep.minutesAwake = sleep['minutesAwake']
-      @sleep.minutesAfterWakeup = sleep['minutesAfterWakeup']
     end
-
+ 
     respond_to do |format|
       if @sleep.save
         format.html { redirect_to @sleep, :notice => 'Sleep was successfully created.' }
         format.json { render :json => @sleep, :status => :created, :location => @sleep }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :notice => 'Can not save data' }
         format.json { render :json => @sleep.errors, :status => :unprocessable_entity }
       end
     end
@@ -120,7 +119,12 @@ class SleepsController < ApplicationController
 
   def reload(date)
     if not current_user.fitbit.nil?
-      (current_user.fitbit.client.get('/1/user/-/sleep/date/' + str(date) + '.json').body).as_json
+      begin
+        (current_user.fitbit.client.get('/1/user/-/sleep/date/' + str(date) + '.json').body).as_json
+      rescue SocketError
+        logger.error "Can not talk to fitbit"
+        nil
+      end
     end
   end
 end
