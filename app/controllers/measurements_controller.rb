@@ -1,8 +1,8 @@
-class MeasurementsController < ApplicationController
+class MeasurementsController < FitbitController
   # GET /measurements
   # GET /measurements.json
   def index
-    @measurements = Measurement.order("date")
+    @measurements = current_user.measurements.order('date')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,21 +40,22 @@ class MeasurementsController < ApplicationController
   # POST /measurements
   # POST /measurements.json
   def create
-    @measurement = Measurement.new(params[:measurement])
-    @measurement.user = current_user
-
-    data = reload(@measurement.date)
-    @measurement.data = data
-    # TODO body could be nil! if nothing was logged
-    if not data.nil? and not data['body'].nil?
-      body = JSON(data)['body']
-      @measurement.weight = body['weight']
-      @measurement.bmi = body['bmi']
-      @measurement.fat = body['fat']
+    data = reload('body/weight', str(Date.strptime(params[:measurement].values.join("-"))))
+    saved = false
+    if not data.blank?
+      data['body-weight'].each do |day|
+        @measurement = Measurement.new
+        @measurement.date = day['dateTime']
+        @measurement.weight = day['value']
+        @measurement.user = current_user
+	if @measurement.weight > 0
+          saved = @measurement.save
+        end
+      end
     end
 
     respond_to do |format|
-      if @measurement.save
+      if saved
         format.html { redirect_to @measurement, :notice => 'Measurement was successfully created.' }
         format.json { render :json => @measurement, :status => :created, :location => @measurement }
       else
@@ -92,14 +93,4 @@ class MeasurementsController < ApplicationController
     end
   end
 
-  def reload(date)
-    if not current_user.fitbit.nil?
-      begin
-        (current_user.fitbit.client.get('/1/user/-/body/date/' + str(date) + '.json').body).as_json
-      rescue SocketError
-        logger.error "Can not talk to fitbit"
-        nil
-      end
-    end
-  end
 end
