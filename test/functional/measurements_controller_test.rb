@@ -18,7 +18,7 @@ class MeasurementsControllerTest < ActionController::TestCase
 
   test "should create measurement" do
     assert_difference('Measurement.count') do
-      post :create, :measurement => @measurement.attributes
+      post :create, :measurement => {:measurement => @measurement.date.strftime('%Y-%m-%d')}
     end
 
     assert_redirected_to measurement_path(assigns(:measurement))

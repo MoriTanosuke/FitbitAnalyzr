@@ -70,6 +70,8 @@ class MeasurementsController < FitbitController
   def update
     @measurement = Measurement.find(params[:id])
 
+    # TODO update data for this measurement
+
     respond_to do |format|
       if @measurement.update_attributes(params[:measurement])
         format.html { redirect_to @measurement, :notice => 'Measurement was successfully updated.' }

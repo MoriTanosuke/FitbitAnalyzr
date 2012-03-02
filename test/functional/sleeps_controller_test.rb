@@ -2,7 +2,9 @@ require 'test_helper'
 
 class SleepsControllerTest < ActionController::TestCase
   setup do
+    @user = users(:one)
     @sleep = sleeps(:one)
+    @saved_sleep = sleeps(:two)
   end
 
   test "should get index" do
@@ -18,7 +20,7 @@ class SleepsControllerTest < ActionController::TestCase
 
   test "should create sleep" do
     assert_difference('Sleep.count') do
-      post :create, :sleep => @sleep.attributes
+      post :create, :sleep => {:sleep => @sleep.date.strftime('%Y-%m-%d')}
     end
 
     assert_redirected_to sleep_path(assigns(:sleep))
