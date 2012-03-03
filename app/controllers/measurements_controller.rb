@@ -40,7 +40,7 @@ class MeasurementsController < FitbitController
   # POST /measurements
   # POST /measurements.json
   def create
-    data = reload('body/weight', str(Date.strptime(params[:measurement].values.join("-"))))
+    data = reload(['body/weight'], str(Date.strptime(params[:measurement].values.join("-"))))
     saved = false
     if not data.blank?
       data['body-weight'].each do |day|
@@ -69,6 +69,8 @@ class MeasurementsController < FitbitController
   # PUT /measurements/1.json
   def update
     @measurement = Measurement.find(params[:id])
+
+    # TODO update data for this measurement
 
     respond_to do |format|
       if @measurement.update_attributes(params[:measurement])

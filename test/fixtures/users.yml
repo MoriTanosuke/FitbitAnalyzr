@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
-
-one:
-  name: dave
-  password_digest: <%= BCrypt::Password.create('secret') %>
-
-two:
-  name: MyString
-  password_digest: MyString

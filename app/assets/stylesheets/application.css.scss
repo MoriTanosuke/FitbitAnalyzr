@@ -17,7 +17,7 @@ h1,h2,h3,h4,h5,h6 {
 
 header,footer {
   text-align: center;
-  color: #efefef;
+  color: #ffffff;
   background-color: #606060;
   padding-top: 25px;
   padding-bottom: 25px;
@@ -38,7 +38,9 @@ header,footer {
 }
 
 a {
-  color: #ffffff;
+  &,&:active,&:visited,&:hover {
+    color: #cccccc;
+  }
 }
 
 .gray {
