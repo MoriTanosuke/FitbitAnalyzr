@@ -33,7 +33,7 @@
     <header>
 <h1 class="blue">Fitbit</h1>
 <% if not @user.nil? %>
-<p>Welcome, <span class="username"><%= @user.name %></span></p>
+<p>Welcome, <span class="username"><%= @user.email %></span></p>
 <% end %>
 <ul>
   <li><%= link_to 'Home', root_path %></li>

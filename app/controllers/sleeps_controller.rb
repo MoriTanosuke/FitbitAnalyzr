@@ -1,4 +1,5 @@
 class SleepsController < FitbitController
+
   # GET /sleeps
   # GET /sleeps.json
   def index
@@ -40,26 +41,19 @@ class SleepsController < FitbitController
   # POST /sleeps
   # POST /sleeps.json
   def create
-    saved = false
-    data = reload('sleep/minutesAsleep', str(Date.strptime(params[:sleep].values.join("-"))))
-    if not data['sleep-minutesAsleep'].blank?
-      data['sleep-minutesAsleep'].each do |day|
-        @sleep = Sleep.new
-        @sleep.date = day['dateTime']
-        @sleep.minutesAsleep = day['value']
-        @sleep.user = current_user
-        saved = @sleep.save
+    data = reload(get_series, str(Date.strptime(params[:sleep].values.join("-"))))
+    get_series.each do |s|
+      data[s].each do |day|
+        @sleep = for_date(day['dateTime'])
+	# get variable name from last part of series
+        @sleep.send(s[/\/(.*)/, 1] + '=', day['value'])
+        @sleep.save
       end
     end
  
     respond_to do |format|
-      if saved
-        format.html { redirect_to @sleep, :notice => 'Sleep was successfully created.' }
-        format.json { render :json => @sleep, :status => :created, :location => @sleep }
-      else
-        format.html { render :action => "new", :notice => 'Can not save data' }
-        format.json { render :json => @sleep.errors, :status => :unprocessable_entity }
-      end
+      format.html { redirect_to sleeps_path, :notice => 'Sleep was successfully created.' }
+      format.json { render :json => sleeps_path, :status => :created, :location => sleeps_path }
     end
   end
 
@@ -91,6 +85,21 @@ class SleepsController < FitbitController
       format.html { redirect_to sleeps_url }
       format.json { head :ok }
     end
+  end
+
+protected
+  def get_series
+    ['sleep/startTime', 'sleep/timeInBed', 'sleep/minutesAsleep', 'sleep/awakeningsCount', 'sleep/minutesAwake', 'sleep/minutesToFallAsleep', 'sleep/minutesAfterWakeup', 'sleep/efficiency']
+  end
+
+  def for_date(date)
+    @sleep = Sleep.find_by_date(date)
+    if @sleep.nil? or @sleep.user_id != current_user.id
+      @sleep = Sleep.new
+      @sleep.date = date
+      @sleep.user = current_user
+    end
+    return @sleep
   end
 end
 

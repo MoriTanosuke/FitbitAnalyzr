@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302163953) do
+ActiveRecord::Schema.define(:version => 20120303162725) do
 
   create_table "consumer_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -23,15 +23,6 @@ ActiveRecord::Schema.define(:version => 20120302163953) do
   end
 
   add_index "consumer_tokens", ["token"], :name => "index_consumer_tokens_on_token", :unique => true
-
-  create_table "imports", :force => true do |t|
-    t.string   "user"
-    t.date     "date"
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "range"
-  end
 
   create_table "measurements", :force => true do |t|
     t.date     "date"
@@ -47,8 +38,7 @@ ActiveRecord::Schema.define(:version => 20120302163953) do
     t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "duration"
-    t.integer  "awakeningscount"
+    t.integer  "awakeningsCount"
     t.integer  "minutesToFallAsleep"
     t.integer  "efficiency"
     t.integer  "minutesAsleep"
@@ -60,11 +50,11 @@ ActiveRecord::Schema.define(:version => 20120302163953) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
     t.string   "password_digest"
     t.string   "oauth"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
 end

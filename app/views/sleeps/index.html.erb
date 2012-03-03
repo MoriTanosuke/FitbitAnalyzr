@@ -7,7 +7,8 @@
 <thead>
   <tr>
     <th>Date</th>
-    <th>Duration</th>
+    <th>Start</th>
+    <th>Time in Bed</th>
     <th>Hours Asleep</th>
     <td></td>
   </tr>
@@ -17,7 +18,8 @@
 <% @sleeps.each do |sleep| %>
   <tr>
     <th><%= sleep.date %></th>
-    <td><% if not sleep.duration.blank? %><%= sleep.duration/36000/100.0 %><% end %></td>
+    <td><%= sleep.startTime %></th>
+    <td><% if not sleep.timeInBed.blank? %><%= sleep.timeInBed*10/6/100.0 %><% end %></td>
     <td><% if not sleep.minutesAsleep.blank? %><%= sleep.minutesAsleep*10/6/100.0 %><% end %></td>
     <td><%= link_to 'Show', sleep %>
     <%= link_to 'Edit', edit_sleep_path(sleep) %>
