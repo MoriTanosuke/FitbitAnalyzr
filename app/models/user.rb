@@ -14,4 +14,7 @@ class User < ActiveRecord::Base
   has_many :measurements
   has_many :activities
 
+  def subscribed?
+    self.subscribed
+  end
 end
