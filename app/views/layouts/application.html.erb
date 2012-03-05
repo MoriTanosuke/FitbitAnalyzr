@@ -32,9 +32,6 @@
   <div id="container">
     <header>
 <h1 class="blue">fitbit analyzr</h1>
-<% if not @user.nil? %>
-<p>Welcome, <span class="username"><%= @user.email %></span></p>
-<% end %>
 <ul>
   <li><%= link_to 'Home', root_path %></li>
   <li><%= link_to 'Sleep', sleeps_path %></li>
@@ -42,14 +39,14 @@
 <% if session[:user_id] != nil %>
   <li><%= link_to 'Logout', logout_path, :method => 'delete' %></li>
 <% else %>
-  <li><%= link_to 'Log in', login_path %></li>
+  <li><%= link_to 'Log in', login_path %>/<%= link_to 'Register', register_path %></li>
 <% end %>
 </ul>
-<% if not @user.nil? %>
-<p>You're connected. Your last sync was at <span class="lastSync"><%= @lastSync %></span> and your battery is <span class="battery"><%= @battery %>.</span></p>
-<% end %>
     </header>
     <div id="main" role="main">
+<% flash.each do |key, value| %>
+  <div class="flash <%= key %>"><%= value %></div>
+<% end %>
 <%= yield %>
     </div>
     <footer>

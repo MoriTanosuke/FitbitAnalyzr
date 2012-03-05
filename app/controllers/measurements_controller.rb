@@ -40,17 +40,14 @@ class MeasurementsController < FitbitController
   # POST /measurements
   # POST /measurements.json
   def create
-    data = reload(['body/weight'], str(Date.strptime(params[:measurement].values.join("-"))))
+    data = reload(get_series, str(Date.strptime(params[:measurement].values.join("-"))))
     saved = false
-    if not data.blank?
-      data['body-weight'].each do |day|
-        @measurement = Measurement.new
-        @measurement.date = day['dateTime']
-        @measurement.weight = day['value']
-        @measurement.user = current_user
-	if @measurement.weight > 0
-          saved = @measurement.save
-        end
+    get_series.each do |s|
+      # get variable name from last part of series
+      data[s].each do |day|
+        @measurement = find_for(day['dateTime'])
+        @measurement.send(s.rpartition('/')[2] + '=', day['value'])
+        saved = @measurement.save
       end
     end
 
@@ -95,4 +92,19 @@ class MeasurementsController < FitbitController
     end
   end
 
+  protected
+
+  def get_series
+    return ['body/weight']
+  end
+  
+  def find_for(date)
+    measurement = Measurement.find_by_date(date)
+    if measurement.nil? or measurement.user != current_user
+      measurement = Measurement.new
+      measurement.date = date
+      measurement.user = current_user
+    end
+    return measurement
+  end
 end

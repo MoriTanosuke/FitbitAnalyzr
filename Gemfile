@@ -7,6 +7,7 @@ gem 'rails', '3.1.0'
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.6'
+  gem 'webrat'
 end
 
 gem 'sqlite3'

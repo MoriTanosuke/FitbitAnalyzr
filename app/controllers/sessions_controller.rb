@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:name])
+    user = User.find_by_email(params[:email])
     if user and user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to :controller => 'welcome'
