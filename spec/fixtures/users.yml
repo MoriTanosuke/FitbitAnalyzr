@@ -1,0 +1,10 @@
+one:
+  id: 1
+  email: 'test1@localhost.org'
+  password_digest: <%= BCrypt::Password.create('test1') %>
+
+two:
+  id: 2
+  email: 'test2@localhost.org'
+  password_digest: <%= BCrypt::Password.create('test2') %>
+
