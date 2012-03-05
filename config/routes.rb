@@ -1,6 +1,7 @@
 Fitbit::Application.routes.draw do
-  resources :activities
 
+  resources :welcomes
+  resources :activities
   resources :measurements
   resources :sleeps
   resources :users
@@ -13,8 +14,6 @@ Fitbit::Application.routes.draw do
     end
   end
 
-  get "welcome/index"
-  get "welcome/authorize"
   get "admin" => "admin#index"
   
   controller :sessions do
@@ -76,6 +75,7 @@ Fitbit::Application.routes.draw do
 
   match '/register', :to => 'users#new'
   match '/deauthorize', :to => 'users#deauthorize'
+  match '/contact', :to => 'welcome#contact'
 
   # See how all your routes lay out with "rake routes"
 

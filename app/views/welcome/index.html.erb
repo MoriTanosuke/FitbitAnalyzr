@@ -1,3 +1,4 @@
+<h2>Welcome to Fitbit Analyzr</h2>
 <% if session[:user_id] != nil %>
   <% if User.find_by_id(session[:user_id]).fitbit.nil? %>
     <p><%= image_tag "fitbit/fitbit_logo_dark_100px.png" %> <%= button_to 'Connect to fitbit', oauth_consumers_path + "/fitbit", :method => 'get' %></p>
@@ -14,6 +15,7 @@
 <li>Disconnect fitbit</li>
 <li>Import sleep</li>
 <li>Import body weight</li>
+<li>Import activities</li>
 </ul>
 
 <h2> What you can't do (yet):</h2>
@@ -23,3 +25,4 @@
 <li>Display several charts into one huge chart</li>
 </ul>
 
+<p>If you have any issues with this site, go to <a href="https://github.com/MoriTanosuke/FitbitAnalyzr/issues?state=open">the issue tracker</a>. There might even be <a href="https://github.com/MoriTanosuke/FitbitAnalyzr/wiki">some kind of documentation available</a>.

@@ -31,17 +31,7 @@
   <div id="container">
     <header>
 <h1 class="blue">fitbit analyzr</h1>
-<ul>
-  <li><%= link_to 'Home', root_path %></li>
-  <li><%= link_to 'Activities', activities_path %></li>
-  <li><%= link_to 'Sleep', sleeps_path %></li>
-  <li><%= link_to 'Measurement', measurements_path %></li>
-<% if session[:user_id] != nil %>
-  <li><%= link_to 'Logout', logout_path, :method => 'delete' %></li>
-<% else %>
-  <li><%= link_to 'Log in', login_path %>/<%= link_to 'Register', register_path %></li>
-<% end %>
-</ul>
+<%= render 'layouts/navigation' %>
     </header>
     <div id="main" role="main">
 <% flash.each do |key, value| %>
@@ -51,6 +41,7 @@
     </div>
     <footer>
 <h1>fitbit analyzr</h1>
+<%= render 'layouts/navigation' %>
 <p class="gray">made in germany</p>
 <p>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
@@ -63,10 +54,8 @@
     </footer>
   </div> <!--! end of #container -->
 
-
-  <!-- Change UA-XXXXX-X to be your site's ID -->
   <script>
-    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
+    window._gaq = [['_setAccount','UA-16834569-5'],['_trackPageview'],['_trackPageLoadTime']];
     Modernizr.load({
       load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
     });
