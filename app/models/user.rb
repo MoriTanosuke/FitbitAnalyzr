@@ -12,5 +12,6 @@ class User < ActiveRecord::Base
   has_one :fitbit, :class_name => "FitbitToken", :dependent => :destroy
   has_many :sleeps
   has_many :measurements
+  has_many :activities
 
 end

@@ -1,0 +1,23 @@
+<div id="activity-graph"></div>
+<script type="text/javascript">
+var chart1; // globally available
+$(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+         chart: { renderTo: 'activity-graph', type: 'line' },
+         title: { text: 'Activity' },
+         xAxis: { type: 'datetime' },
+         yAxis: { title: { text: 'Counter' } },
+         series: [
+<% @series.each do |s| %>
+{
+  name: '<%= s.rpartition('/')[2] %>',
+  data: [<%
+@activities.each do |a|
+%>
+[Date.parse('<%= a.date %>'), <%= a.send(s.rpartition('/')[2]) %>],
+<% end %>],
+},
+<% end %>
+      ]});
+   });
+</script>

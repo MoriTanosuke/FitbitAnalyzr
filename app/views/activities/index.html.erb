@@ -1,0 +1,45 @@
+<h1>Listing activities</h1>
+
+<%= render :partial => 'activity-graph', :local => {:activities => @activities, :series => @series} %>
+
+<table>
+  <tr>
+<th>calories</th>
+<th>steps</th>
+<th>distance</th>
+<th>floors</th>
+<th>elevation</th>
+<th>minutesSedentary</th>
+<th>minutesLightlyActive</th>
+<th>minutesFairlyActive</th>
+<th>minutesVeryActive</th>
+<th>activeScore</th>
+<th>activityCalories</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @activities.each do |activity| %>
+  <tr>
+<td><%= activity.calories %></td>
+<td><%= activity.steps %></td>
+<td><%= activity.distance %></td>
+<td><%= activity.floors %></td>
+<td><%= activity.elevation %></td>
+<td><%= activity.minutesSedentary %></td>
+<td><%= activity.minutesLightlyActive %></td>
+<td><%= activity.minutesFairlyActive %></td>
+<td><%= activity.minutesVeryActive %></td>
+<td><%= activity.activeScore %></td>
+<td><%= activity.activityCalories %></td>
+    <td><%= link_to 'Show', activity %></td>
+    <td><%= link_to 'Edit', edit_activity_path(activity) %></td>
+    <td><%= link_to 'Destroy', activity, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Activity', new_activity_path %>
