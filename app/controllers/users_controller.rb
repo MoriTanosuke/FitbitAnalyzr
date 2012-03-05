@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.order(:email)
+    @users = [User.find(current_user)]
 
     respond_to do |format|
       format.html # index.html.erb
@@ -47,6 +47,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         flash[:success] = 'Welcome to Fitbit Analyzr'
+        UserMailer.welcome_email(@user).deliver
         format.html { redirect_to users_url }
         format.json { render :json => @user, :status => :created, :location => @user }
       else
@@ -81,6 +82,8 @@ class UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
+      flash[:success] = 'User removed.'
+      UserMailer.goodbye_email(@user).deliver
       format.html { redirect_to users_url }
       format.json { head :ok }
     end
