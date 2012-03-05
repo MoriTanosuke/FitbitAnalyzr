@@ -1,9 +1,9 @@
 <% if session[:user_id] != nil %>
-  <% if User.find_by_id(session[:user_id]).fitbit == nil %>
+  <% if User.find_by_id(session[:user_id]).fitbit.nil? %>
     <p><%= image_tag "fitbit/fitbit_logo_dark_100px.png" %> <%= button_to 'Connect to fitbit', oauth_consumers_path + "/fitbit", :method => 'get' %></p>
   <% else %>
     <p><%= image_tag "fitbit/fitbit_logo_dark_100px.png" %></p>
-    <p><%= button_to 'Disconnect', users_path + "/forget_fitbit" %></p>
+    <p><%= button_to 'Disconnect', '/deauthorize' %></p>
   <% end %>
 <% end %>
 
@@ -13,6 +13,7 @@
 <li>Connect to fitbit</li>
 <li>Disconnect fitbit</li>
 <li>Import sleep</li>
+<li>Import body weight</li>
 </ul>
 
 <h2> What you can't do (yet):</h2>

@@ -73,6 +73,7 @@ Fitbit::Application.routes.draw do
   root :to => 'welcome#index'
 
   match '/register', :to => 'users#new'
+  match '/deauthorize', :to => 'users#deauthorize'
 
   # See how all your routes lay out with "rake routes"
 

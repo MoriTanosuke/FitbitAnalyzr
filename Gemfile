@@ -19,7 +19,7 @@ gem 'json'
 
 gem 'therubyracer'
 
-gem "oauth-plugin", ">= 0.4.0.pre1"
+gem "oauth-plugin", ">= 0.4.0.rc2"
 
 # Gems used only for assets and not required
 # in production environments by default.

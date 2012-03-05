@@ -21,7 +21,7 @@ class WelcomeController < ApplicationController
   def authorize
     # do something with the callback
     id = params[:id]
-    puts "received id=#{id}"
+    flash[:success] = 'You are now connected to Fitbit'
     redirect_to root_url
   end
 

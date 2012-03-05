@@ -6,19 +6,18 @@ class OauthConsumersController < ApplicationController
   #
   #   before_filter :authenticate_user!, :only=>:index
   
-  def index
-    @consumer_tokens=ConsumerToken.all :conditions=>{:user_id=>current_user.id}
-    @services=OAUTH_CREDENTIALS.keys-@consumer_tokens.collect{|c| c.class.service_name}
-  end
-  
-  def callback
-    super
-  end
-  
-  def client
-    super
-  end
-  
+#  def index
+#    @consumer_tokens=ConsumerToken.all :conditions=>{:user_id=>current_user.id}
+#    @services=OAUTH_CREDENTIALS.keys-@consumer_tokens.collect{|c| c.class.service_name}
+#  end
+#  
+#  def callback
+#    super
+#  end
+#  
+#  def client
+#    super
+#  end
   
   protected
   
@@ -26,8 +25,8 @@ class OauthConsumersController < ApplicationController
   # params[:id] holds the service name so you could use this to redirect to various parts
   # of your application depending on what service you're connecting to.
   def go_back
-#    redirect_to root_url
-    redirect_to :controller => 'welcome', :action => 'authorize'
+    redirect_to root_url
+#    redirect_to :controller => 'welcome', :action => 'authorize'
   end
   
   # The plugin requires logged_in? to return true or false if the user is logged in. Uncomment and

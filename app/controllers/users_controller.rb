@@ -83,4 +83,19 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  def deauthorize
+    @user = current_user
+    logger.info "Removing connection to fitbit from #{@user.email}"
+    if not @user.nil? and not @user.fitbit.nil?
+      logger.info "Removing fitbit #{@user.fitbit}"
+      if @user.fitbit.delete
+        flash[:success] = 'You are no longer connected to Fitbit'
+      else
+        flash[:failure] = 'Can not delete connection to Fitbit'
+      end
+    end
+    redirect_to root_url
+  end
+
 end

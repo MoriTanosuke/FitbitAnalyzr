@@ -152,7 +152,7 @@ DEPENDENCIES
   coffee-rails (~> 3.1.0)
   jquery-rails
   json
-  oauth-plugin (>= 0.4.0.pre1)
+  oauth-plugin (>= 0.4.0.rc2)
   pg
   rails (= 3.1.0)
   rspec-rails (~> 2.6)
