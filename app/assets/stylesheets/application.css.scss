@@ -12,13 +12,35 @@ h1,h2,h3,h4,h5,h6 {
   font-family: 'Quicksand', sans-serif;
 }
 
-#main {
+body {
+  background-image: linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
+  background-image: -o-linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
+  background-image: -moz-linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
+  background-image: -webkit-linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
+  background-image: -ms-linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.2, rgb(239,239,239)),
+    color-stop(0.6, rgb(255,255,255))
+  );
 }
 
+#main {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+header {
+  border-bottom: 2px solid #efefef;
+}
+footer {
+  border-top: 2px solid #ddd;
+}
 header,footer {
   text-align: center;
-  color: #ffffff;
-  background-color: #606060;
+  color: #060606;
   padding-top: 25px;
   padding-bottom: 25px;
 
@@ -35,12 +57,8 @@ header,footer {
 
 a {
   &,&:active,&:visited,&:hover {
-    color: #cccccc;
+    color: #f36;
   }
-}
-
-.gray {
-  color: #303030;
 }
 
 .flash {
