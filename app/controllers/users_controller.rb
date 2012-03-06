@@ -80,6 +80,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    session[:user_id] = nil
 
     respond_to do |format|
       flash[:success] = 'User removed.'
