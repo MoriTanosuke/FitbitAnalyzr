@@ -48,7 +48,7 @@ class UsersController < ApplicationController
       if @user.save
         flash[:success] = 'Welcome to Fitbit Analyzr'
         UserMailer.welcome_email(@user).deliver
-        format.html { redirect_to users_url }
+        format.html { redirect_to root_path }
         format.json { render :json => @user, :status => :created, :location => @user }
       else
         flash[:error] = 'Can not register'
