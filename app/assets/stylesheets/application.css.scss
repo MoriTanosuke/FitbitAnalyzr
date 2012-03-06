@@ -61,12 +61,15 @@ a {
   }
 }
 
-.flash {
-  .error {
-    color: red;
-  }
-
-  .success {
-    color: green;
-  }
+.error {
+  color: red;
 }
+
+.success {
+  color: green;
+}
+
+.flash {
+  font-weight: bold;
+}
+

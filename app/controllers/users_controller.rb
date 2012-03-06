@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:success] = 'Welcome to Fitbit Analyzr'
+        flash[:success] = 'Welcome to Fitbit Analyzr. You are registered. Please log in.'
         UserMailer.welcome_email(@user).deliver
         format.html { redirect_to root_path }
         format.json { render :json => @user, :status => :created, :location => @user }
@@ -78,14 +78,18 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    if not current_user.nil?
+      @user = current_user
+    else
+      @user = User.find(params[:id])
+    end
     @user.destroy
-    session[:user_id] = nil
+    reset_session
 
     respond_to do |format|
       flash[:success] = 'User removed.'
       UserMailer.goodbye_email(@user).deliver
-      format.html { redirect_to users_url }
+      format.html { redirect_to root_path }
       format.json { head :ok }
     end
   end

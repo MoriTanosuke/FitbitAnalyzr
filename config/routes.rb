@@ -74,6 +74,7 @@ Fitbit::Application.routes.draw do
   root :to => 'welcome#index'
 
   match '/register', :to => 'users#new'
+  match '/delete', :to => 'users#destroy'
   match '/deauthorize', :to => 'users#deauthorize'
   match '/contact', :to => 'welcome#contact'
 

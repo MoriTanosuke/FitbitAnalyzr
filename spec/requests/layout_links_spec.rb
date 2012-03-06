@@ -18,5 +18,10 @@ describe 'LayoutLinks' do
     response.should have_selector('a', :content => 'Register')
     response.should have_selector('a', :href => '/register')
   end
+
+  it "should have a 'donate' button" do
+    get '/'
+    response.should have_selector('.donate', :action =~ /paypal.com/i)
+  end
 end
 
