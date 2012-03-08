@@ -4,6 +4,7 @@
 
 <table>
   <tr>
+<th>date</th>
 <th>calories</th>
 <th>steps</th>
 <th>distance</th>
@@ -22,6 +23,7 @@
 
 <% @activities.each do |activity| %>
   <tr>
+<td><%= activity.date %></td>
 <td><%= activity.calories %></td>
 <td><%= activity.steps %></td>
 <td><%= activity.distance %></td>
