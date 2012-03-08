@@ -21,7 +21,7 @@ describe 'LayoutLinks' do
 
   it "should have a 'donate' button" do
     get '/'
-    response.should have_selector('#donate', :action =~ /paypal.com/i)
+    response.should have_selector('form', :id => 'donate')
   end
 end
 

@@ -101,7 +101,9 @@ class SubscriptionsController < ApplicationController
   end
 
   def notify
+    @notification = params
     logger.info "received notification"
+    SubscriptionMailer.notification_received(@notification).deliver
 
     respond_to do |format|
       format.html { head :no_content }
