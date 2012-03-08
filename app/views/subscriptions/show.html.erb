@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Collection path:</b>
+  <%= @subscription.collection_path %>
+</p>
+
+<p>
+  <b>Subscription:</b>
+  <%= @subscription.subscription_id %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%= @subscription.created_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_subscription_path(@subscription) %> |
+<%= link_to 'Back', subscriptions_path %>

@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :sleeps
   has_many :measurements
   has_many :activities
+  has_many :subscriptions
 
   def subscribed?
     self.subscribed
