@@ -78,7 +78,7 @@ Fitbit::Application.routes.draw do
   match '/delete', :to => 'users#destroy'
   match '/deauthorize', :to => 'users#deauthorize'
   match '/contact', :to => 'welcome#contact'
-  match '/notify', :to => 'subscriptions#notify'
+  match '/notify', :to => 'subscriptions#notify', :via => :post
 
   # See how all your routes lay out with "rake routes"
 
