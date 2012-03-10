@@ -1,4 +1,6 @@
 class SubscriptionsController < ApplicationController
+  skip_before_filter :notify
+
   # GET /subscriptions
   # GET /subscriptions.json
   def index
