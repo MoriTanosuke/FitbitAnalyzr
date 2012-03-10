@@ -103,7 +103,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def notify
-    @notification = params
+    @notification = request.raw_post
     logger.info "received notification"
     SubscriptionMailer.notification_received(@notification).deliver
 
