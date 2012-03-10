@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  skip_before_filter :notify
+  skip_before_filter :authorize, :only => [:notify]
 
   # GET /subscriptions
   # GET /subscriptions.json
