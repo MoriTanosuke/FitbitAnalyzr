@@ -103,8 +103,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def notify
-    @notification = request.raw_post
-    logger.info "received notification"
+    @notification = XAML::dump(request.raw_post)
+    logger.info "received notification #{@notification}"
     SubscriptionMailer.notification_received(@notification).deliver
 
     respond_to do |format|
