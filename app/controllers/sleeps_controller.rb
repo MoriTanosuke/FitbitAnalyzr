@@ -90,7 +90,7 @@ class SleepsController < FitbitController
 
 protected
   def get_series
-    ['sleep/startTime', 'sleep/timeInBed', 'sleep/minutesAsleep', 'sleep/awakeningsCount', 'sleep/minutesAwake', 'sleep/minutesToFallAsleep', 'sleep/minutesAfterWakeup', 'sleep/efficiency']
+    ['startTime', 'timeInBed', 'minutesAsleep', 'awakeningsCount', 'minutesAwake', 'minutesToFallAsleep', 'minutesAfterWakeup', 'efficiency'].collect {|s| 'sleep/' + s}
   end
 
   def for_date(date)

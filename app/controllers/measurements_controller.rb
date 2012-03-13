@@ -95,7 +95,7 @@ class MeasurementsController < FitbitController
   protected
 
   def get_series
-    return ['body/weight', 'body/bmi', 'body/fat']
+    ['weight', 'bmi', 'fat'].collect {|s| 'body/' + s}
   end
   
   def find_for(date)

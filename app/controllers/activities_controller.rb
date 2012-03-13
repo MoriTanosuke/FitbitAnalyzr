@@ -96,8 +96,8 @@ class ActivitiesController < FitbitController
 protected
 
   def get_series
-    ['activities/calories', 'activities/steps', 'activities/distance', 'activities/minutesSedentary', 'activities/minutesLightlyActive', 'activities/minutesFairlyActive', 'activities/minutesVeryActive', 'activities/activeScore', 'activities/activityCalories']
-    #'activities/elevation', 'activities/floors', 
+    ['calories', 'steps', 'distance', 'minutesSedentary', 'minutesLightlyActive', 'minutesFairlyActive', 'minutesVeryActive', 'activeScore', 'activityCalories'].collect {|s| 'activities/' + s}
+    #'elevation', 'floors', 
   end
 
   def for_date(date)
