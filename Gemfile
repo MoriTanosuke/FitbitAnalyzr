@@ -2,24 +2,26 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
 group :test, :development do
-  gem 'rspec-rails', '~> 2.6'
+  gem 'rspec-rails'
   gem 'webrat'
-  gem 'spork', '~> 0.9.0'
 end
 
-gem 'sqlite3'
+if defined?(JRUBY_VERSION)
+  gem 'therubyrhino'
+  gem 'jdbc-sqlite3'
+  gem 'activerecord-jdbc-adapter'
+  gem 'jruby-openssl'
+else
+  gem 'therubyracer'
+  gem 'sqlite3'
+end
+
 group :production do
   gem 'pg'
 end
 
 gem 'json'
-
-gem 'therubyracer'
-
 gem "oauth-plugin", ">= 0.4.0.rc2"
 
 # Gems used only for assets and not required
