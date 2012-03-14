@@ -105,7 +105,7 @@ class SubscriptionsController < FitbitController
   def notify
     update = JSON.parse(request['updates'].read)
     logger.info "received notification #{update}"
-    #@notification = []
+    @notification = []
     update.each do |u|
       # trigger update
       date = u['date']
@@ -117,9 +117,9 @@ class SubscriptionsController < FitbitController
         logger.info "update #{series} on #{date} for #{user.email}"
         reload_range_for_user(user, get_series(series), date, date)
       end
-      #@notification << u
+      @notification << u
     end
-    #SubscriptionMailer.notification_received(@notification.to_s.html_safe).deliver
+    SubscriptionMailer.notification_received(@notification.to_s.html_safe).deliver
 
     respond_to do |format|
       format.html { head :no_content }
