@@ -1,4 +1,4 @@
-class SubscriptionsController < ApplicationController
+class SubscriptionsController < FitbitController
   skip_before_filter :authorize, :only => [:notify]
 
   # GET /subscriptions
@@ -103,9 +103,23 @@ class SubscriptionsController < ApplicationController
   end
 
   def notify
-    @notification = request.raw_post
-    logger.info "received notification #{@notification}"
-    SubscriptionMailer.notification_received(@notification).deliver
+    update = JSON.parse(request['updates'].read)
+    logger.info "received notification #{update}"
+    #@notification = []
+    update.each do |u|
+      # trigger update
+      date = u['date']
+      sid = u['subscriptionId']
+      series = u['collectionType']
+      uid = sid[0, sid.index('-')]
+      user = User.find_by_id(uid)
+      if not user.nil?
+        logger.info "update #{series} on #{date} for #{user.email}"
+        reload_range_for_user(user, get_series(series), date, date)
+      end
+      #@notification << u
+    end
+    #SubscriptionMailer.notification_received(@notification.to_s.html_safe).deliver
 
     respond_to do |format|
       format.html { head :no_content }

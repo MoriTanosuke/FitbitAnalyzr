@@ -3,7 +3,7 @@ class ActivitiesController < FitbitController
   # GET /activities.json
   def index
     @activities = current_user.activities.order(:date)
-    @series = get_series
+    @series = get_series('activities')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -30,6 +30,7 @@ class ActivitiesController < FitbitController
   # GET /activities/new.json
   def new
     @activity = Activity.new
+    @series = get_series('activities')
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,9 +46,9 @@ class ActivitiesController < FitbitController
   # POST /activities
   # POST /activities.json
   def create
-    data = reload(get_series, str(Date.strptime(params[:activity].values.join("-"))))
+    data = reload(get_series('activities'), str(Date.strptime(params[:activity].values.join("-"))))
     saved = false
-    get_series.each do |s|
+    get_series('activities').each do |s|
       logger.info "Updating series=#{s}"
       data[s].each do |day|
         @activity = for_date(day['dateTime'])
@@ -94,12 +95,6 @@ class ActivitiesController < FitbitController
   end
 
 protected
-
-  def get_series
-    ['calories', 'steps', 'distance', 'minutesSedentary', 'minutesLightlyActive', 'minutesFairlyActive', 'minutesVeryActive', 'activeScore', 'activityCalories'].collect {|s| 'activities/' + s}
-    #'elevation', 'floors', 
-  end
-
   def for_date(date)
     a = Activity.find_by_date(date)
     if a.nil? or a.user != current_user

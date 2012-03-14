@@ -41,9 +41,9 @@ class SleepsController < FitbitController
   # POST /sleeps
   # POST /sleeps.json
   def create
-    data = reload(get_series, str(Date.strptime(params[:sleep].values.join("-"))))
+    data = reload(get_series('sleep'), str(Date.strptime(params[:sleep].values.join("-"))))
     saved = false
-    get_series.each do |s|
+    get_series('sleep').each do |s|
       data[s].each do |day|
         @sleep = for_date(day['dateTime'])
 	# get variable name from last part of series
@@ -89,10 +89,6 @@ class SleepsController < FitbitController
   end
 
 protected
-  def get_series
-    ['startTime', 'timeInBed', 'minutesAsleep', 'awakeningsCount', 'minutesAwake', 'minutesToFallAsleep', 'minutesAfterWakeup', 'efficiency'].collect {|s| 'sleep/' + s}
-  end
-
   def for_date(date)
     sleep = Sleep.find_by_date(date)
     if sleep.nil? or sleep.user != current_user

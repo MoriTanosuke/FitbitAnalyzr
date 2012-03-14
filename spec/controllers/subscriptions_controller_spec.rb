@@ -18,6 +18,7 @@ describe SubscriptionsController do
 
   describe "POST notify" do
     it "should acknowledge the notification with HTTP status code 204" do
+      pending('post multipart/form')
       post 'notify'
       response.response_code.should == 204
     end

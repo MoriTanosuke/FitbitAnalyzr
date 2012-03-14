@@ -7,7 +7,7 @@ describe SleepsController do
       '{"sleep/minutesAsleep":[{"dateTime":"1970-01-01","value":1},{"dateTime":"1970-01-02","value":2}]}'
     }
 
-    api = subject.reload(['minutesAsleep'], '1970-01-01', '1970-01-02')
+    api = subject.reload_range(['minutesAsleep'], '1970-01-01', '1970-01-02')
     api['sleep/minutesAsleep'][0]['value'].should eq(1)
   end
 end
