@@ -120,7 +120,34 @@ class SubscriptionsController < FitbitController
           puts "Updating series=#{s}"
           data[s].each do |day|
             puts "#{s} #{day['dateTime']}=#{day['value']}"
-            puts "Need to store #{s.singularize}"
+            if series == 'activities'
+              update = Activity.find_by_date(day['dateTime'])
+              if update.nil?
+                update = Activity.new
+              end
+              update.date = date
+              update.user = user
+              update.send(s.partition('/')[2] + '=', day['value'])
+              update.save
+            elsif series == 'body'
+              update = Measurement.find_by_date(day['dateTime'])
+              if update.nil?
+                update = Measurement.new
+              end
+              update.date = date
+              update.user = user
+              update.send(s.partition('/')[2] + '=', day['value'])
+              update.save
+            elsif series == 'sleep'
+              update = Sleep.find_by_date(day['dateTime'])
+              if update.nil?
+                update = Sleep.new
+              end
+              update.date = date
+              update.user = user
+              update.send(s.partition('/')[2] + '=', day['value'])
+              update.save
+            end
           end
         end
       end
