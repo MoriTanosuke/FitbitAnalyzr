@@ -104,7 +104,7 @@ class SubscriptionsController < FitbitController
 
   def notify
     update = JSON.parse(request['updates'].read)
-    logger.info "received notification #{update}"
+    puts "received notification #{update}"
     @notification = []
     update.each do |u|
       # trigger update
@@ -114,7 +114,7 @@ class SubscriptionsController < FitbitController
       uid = sid[0, sid.index('-')]
       user = User.find_by_id(uid)
       if not user.nil?
-        logger.info "update #{series} on #{date} for #{user.email}"
+        puts "update #{series} on #{date} for #{user.email}"
         reload_range_for_user(user, get_series(series), date, date)
       end
       @notification << u
