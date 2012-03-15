@@ -29,7 +29,7 @@ class FitbitController < ApplicationController
     api.each do |a|
       tapi = tapi.merge(a[0].gsub('-', '/') => a[1])
     end
-    logger.info tapi
+    puts tapi
     return tapi
   end
 

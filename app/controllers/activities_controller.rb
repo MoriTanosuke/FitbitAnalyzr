@@ -49,7 +49,7 @@ class ActivitiesController < FitbitController
     data = reload(get_series('activities'), str(Date.strptime(params[:activity].values.join("-"))))
     saved = false
     get_series('activities').each do |s|
-      logger.info "Updating series=#{s}"
+      puts "Updating series=#{s}"
       data[s].each do |day|
         @activity = for_date(day['dateTime'])
         @activity.send(s.partition('/')[2] + '=', day['value'])

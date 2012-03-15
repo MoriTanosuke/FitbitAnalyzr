@@ -96,9 +96,9 @@ class UsersController < ApplicationController
   
   def deauthorize
     @user = current_user
-    logger.info "Removing connection to fitbit from #{@user.email}"
+    puts "Removing connection to fitbit from #{@user.email}"
     if not @user.nil? and not @user.fitbit.nil?
-      logger.info "Removing fitbit #{@user.fitbit}"
+      puts "Removing fitbit #{@user.fitbit}"
       if @user.fitbit.delete
         flash[:success] = 'You are no longer connected to Fitbit'
       else
