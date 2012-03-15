@@ -120,6 +120,7 @@ class SubscriptionsController < FitbitController
           puts "Updating series=#{s}"
           data[s].each do |day|
             puts "#{s} #{day['dateTime']}=#{day['value']}"
+            puts "Need to store #{s.singularize}"
           end
         end
       end
