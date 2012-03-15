@@ -115,7 +115,13 @@ class SubscriptionsController < FitbitController
       user = User.find_by_id(uid)
       if not user.nil?
         puts "update #{series} on #{date} for #{user.email}"
-        reload_range_for_user(user, get_series(series), date, date)
+        data = reload_range_for_user(user, get_series(series), date, date)
+        get_series(series).each do |s|
+          puts "Updating series=#{s}"
+          data[s].each do |day|
+            puts "#{s} #{day['dateTime']}=#{day['value']}"
+          end
+        end
       end
       @notification << u
     end
