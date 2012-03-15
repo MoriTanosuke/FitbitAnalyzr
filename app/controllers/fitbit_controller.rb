@@ -41,6 +41,8 @@ class FitbitController < ApplicationController
       ['calories', 'steps', 'distance', 'minutesSedentary', 'minutesLightlyActive', 'minutesFairlyActive', 'minutesVeryActive', 'activeScore', 'activityCalories'].collect {|s| 'activities/' + s}
     elsif series == 'body'
       ['weight', 'bmi', 'fat'].collect {|s| 'body/' + s}
+    else
+      []
     end
   end
 end
