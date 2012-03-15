@@ -18,7 +18,7 @@ class FitbitController < ApplicationController
     api = {}
     series.each do |s|
       begin
-        data = JSON.parse(api_response(current_user, s, startDate, endDate))
+        data = JSON.parse(api_response(user, s, startDate, endDate))
         api = api.merge(data)
       rescue SocketError
         logger.error "Can not talk to fitbit"
