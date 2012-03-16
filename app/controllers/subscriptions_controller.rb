@@ -4,7 +4,7 @@ class SubscriptionsController < FitbitController
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @subscriptions = Subscription.all
+    @subscriptions = current_user.subscriptions.order(:date)
 
     if not current_user.fitbit.nil?
       @fitbit_subscriptions = JSON.parse(current_user.fitbit.client.get('/1/user/-/apiSubscriptions.json').body)['apiSubscriptions']
