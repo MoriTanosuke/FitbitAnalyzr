@@ -4,10 +4,14 @@ class SubscriptionsController < FitbitController
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @subscriptions = Subscription.all
+    @subscriptions = current_user.subscriptions.order(:created_at)
 
     if not current_user.fitbit.nil?
-      @fitbit_subscriptions = JSON.parse(current_user.fitbit.client.get('/1/user/-/apiSubscriptions.json').body)['apiSubscriptions']
+      begin
+        @fitbit_subscriptions = JSON.parse(current_user.fitbit.client.get('/1/user/-/apiSubscriptions.json').body)['apiSubscriptions']
+      rescue SocketError
+        logger.error "Can not talk to fitbit"
+      end
     end
 
     respond_to do |format|
@@ -116,6 +120,7 @@ class SubscriptionsController < FitbitController
       if not user.nil?
         puts "update #{series} on #{date} for #{user.email}"
         data = reload_range_for_user(user, get_series(series), date, date)
+        # TODO this needs clean up! I don't want to duplicate from activity/sleep/measurement_controller
         get_series(series).each do |s|
           puts "Updating series=#{s}"
           data[s].each do |day|

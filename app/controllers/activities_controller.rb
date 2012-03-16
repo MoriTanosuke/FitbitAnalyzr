@@ -18,7 +18,7 @@ class ActivitiesController < FitbitController
   # GET /activities/1
   # GET /activities/1.json
   def show
-    @activity = Activity.find(params[:id])
+    @activity = current_user.activities.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,7 +40,13 @@ class ActivitiesController < FitbitController
 
   # GET /activities/1/edit
   def edit
-    @activity = Activity.find(params[:id])
+    @activity = current_user.activities.find(params[:id])
+    @series = get_series('activities')
+
+    #respond_to do |format|
+    #  format.html # edit.html.erb
+    #  format.json { render json: @activity }
+    #end
   end
 
   # POST /activities
@@ -69,7 +75,7 @@ class ActivitiesController < FitbitController
   # PUT /activities/1
   # PUT /activities/1.json
   def update
-    @activity = Activity.find(params[:id])
+    @activity = current_user.activities.find(params[:id])
 
     respond_to do |format|
       if @activity.update_attributes(params[:activity])
@@ -85,7 +91,7 @@ class ActivitiesController < FitbitController
   # DELETE /activities/1
   # DELETE /activities/1.json
   def destroy
-    @activity = Activity.find(params[:id])
+    @activity = current_user.activities.find(params[:id])
     @activity.destroy
 
     respond_to do |format|
@@ -96,7 +102,7 @@ class ActivitiesController < FitbitController
 
 protected
   def for_date(date)
-    a = Activity.find_by_date(date)
+    a = current_user.activities.find_by_date(date)
     if a.nil? or a.user != current_user
       a = Activity.new
       a.date = date

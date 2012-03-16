@@ -35,7 +35,7 @@ class SleepsController < FitbitController
 
   # GET /sleeps/1/edit
   def edit
-    @sleep = Sleep.find(params[:id])
+    @sleep = current_user.sleeps.find(params[:id])
   end
 
   # POST /sleeps
@@ -61,7 +61,7 @@ class SleepsController < FitbitController
   # PUT /sleeps/1
   # PUT /sleeps/1.json
   def update
-    @sleep = Sleep.find(params[:id])
+    @sleep = current_user.sleeps.find(params[:id])
 
     #TODO update data for this sleep entry
 
@@ -79,7 +79,7 @@ class SleepsController < FitbitController
   # DELETE /sleeps/1
   # DELETE /sleeps/1.json
   def destroy
-    @sleep = Sleep.find(params[:id])
+    @sleep = current_user.sleeps.find(params[:id])
     @sleep.destroy
 
     respond_to do |format|
@@ -90,7 +90,7 @@ class SleepsController < FitbitController
 
 protected
   def for_date(date)
-    sleep = Sleep.find_by_date(date)
+    sleep = current_user.sleeps.find_by_date(date)
     if sleep.nil? or sleep.user != current_user
       sleep = Sleep.new
       sleep.date = date

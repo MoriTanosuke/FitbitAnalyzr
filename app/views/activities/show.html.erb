@@ -1,5 +1,64 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Date:</b>
+  <%= @activity.date %>
+</p>
+
+<p>
+  <b>Calories:</b>
+  <%= @activity.calories %>
+</p>
+
+<p>
+  <b>Steps:</b>
+  <%= @activity.steps %>
+</p>
+
+<p>
+  <b>Distance:</b>
+  <%= @activity.distance %>
+</p>
+
+<p>
+  <b>Floors:</b>
+  <%= @activity.floors %>
+</p>
+
+<p>
+  <b>Elevation:</b>
+  <%= @activity.elevation %>
+</p>
+
+<p>
+  <b>Minutes sedentary:</b>
+  <%= @activity.minutesSedentary %>
+</p>
+
+<p>
+  <b>Minutes lighty active:</b>
+  <%= @activity.minutesLightlyActive %>
+</p>
+
+<p>
+  <b>Minutes fairly active:</b>
+  <%= @activity.minutesFairlyActive %>
+</p>
+
+<p>
+  <b>Minutes very active:</b>
+  <%= @activity.minutesVeryActive %>
+</p>
+
+<p>
+  <b>Active Score:</b>
+  <%= @activity.activeScore %>
+</p>
+
+<p>
+  <b>Activity Calories</b>
+  <%= @activity.activityCalories %>
+</p>
 
 <%= link_to 'Edit', edit_activity_path(@activity) %> |
 <%= link_to 'Back', activities_path %>
