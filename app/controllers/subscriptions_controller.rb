@@ -23,7 +23,7 @@ class SubscriptionsController < FitbitController
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    @subscription = Subscription.find(params[:id])
+    @subscription = current_user.subscriptions.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -44,7 +44,7 @@ class SubscriptionsController < FitbitController
 
   # GET /subscriptions/1/edit
   def edit
-    @subscription = Subscription.find(params[:id])
+    @subscription = current_user.subscriptions.find(params[:id])
   end
 
   # POST /subscriptions
@@ -74,7 +74,7 @@ class SubscriptionsController < FitbitController
   # PUT /subscriptions/1
   # PUT /subscriptions/1.json
   def update
-    @subscription = Subscription.find(params[:id])
+    @subscription = current_user.subscriptions.find(params[:id])
 
     respond_to do |format|
       if @subscription.update_attributes(params[:subscription])
@@ -90,7 +90,7 @@ class SubscriptionsController < FitbitController
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.json
   def destroy
-    @subscription = Subscription.find(params[:id])
+    @subscription = current_user.subscriptions.find(params[:id])
     if not current_user.fitbit.nil?
       path = ['/1/user/-', @subscription.collection_path, 'apiSubscriptions', @subscription.subscription_id + '-' + @subscription.collection_path]
       current_user.fitbit.client.delete(path.join('/') + '.json')
@@ -126,7 +126,7 @@ class SubscriptionsController < FitbitController
           data[s].each do |day|
             puts "#{s} #{day['dateTime']}=#{day['value']}"
             if series == 'activities'
-              update = Activity.find_by_date(day['dateTime'])
+              update = user.activities.find_by_date(day['dateTime'])
               if update.nil?
                 update = Activity.new
               end
@@ -135,7 +135,7 @@ class SubscriptionsController < FitbitController
               update.send(s.partition('/')[2] + '=', day['value'])
               update.save
             elsif series == 'body'
-              update = Measurement.find_by_date(day['dateTime'])
+              update = user.measurements.find_by_date(day['dateTime'])
               if update.nil?
                 update = Measurement.new
               end
@@ -144,7 +144,7 @@ class SubscriptionsController < FitbitController
               update.send(s.partition('/')[2] + '=', day['value'])
               update.save
             elsif series == 'sleep'
-              update = Sleep.find_by_date(day['dateTime'])
+              update = user.sleeps.find_by_date(day['dateTime'])
               if update.nil?
                 update = Sleep.new
               end
