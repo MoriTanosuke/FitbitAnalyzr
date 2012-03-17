@@ -6,8 +6,6 @@
     <th>Subscription</th>
     <th>Created at</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @subscriptions.each do |subscription| %>
@@ -15,8 +13,6 @@
     <td><%= subscription.collection_path %></td>
     <td><%= subscription.subscription_id %></td>
     <td><%= subscription.created_at %></td>
-    <td><%= link_to 'Show', subscription %></td>
-    <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
     <td><%= link_to 'Destroy', subscription, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
