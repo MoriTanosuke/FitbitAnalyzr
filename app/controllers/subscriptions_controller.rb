@@ -42,16 +42,12 @@ class SubscriptionsController < FitbitController
     end
   end
 
-  # GET /subscriptions/1/edit
-  def edit
-    @subscription = current_user.subscriptions.find(params[:id])
-  end
-
   # POST /subscriptions
   # POST /subscriptions.json
   def create
     @subscription = Subscription.new(params[:subscription])
     @subscription.created_at = Time.new
+    # always use current user
     @subscription.user_id = current_user.id
     @subscription.subscription_id = current_user.id.to_s
     respond_to do |format|
@@ -66,22 +62,6 @@ class SubscriptionsController < FitbitController
       else
         flash[:error] << @subscription.errors
         format.html { render action: "new" }
-        format.json { render json: @subscription.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /subscriptions/1
-  # PUT /subscriptions/1.json
-  def update
-    @subscription = current_user.subscriptions.find(params[:id])
-
-    respond_to do |format|
-      if @subscription.update_attributes(params[:subscription])
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
       end
     end
@@ -109,7 +89,7 @@ class SubscriptionsController < FitbitController
   def notify
     update = JSON.parse(request['updates'].read)
     puts "received notification #{update}"
-    @notification = []
+    #@notification = []
     update.each do |u|
       # trigger update
       date = u['date']
@@ -156,9 +136,9 @@ class SubscriptionsController < FitbitController
           end
         end
       end
-      @notification << u
+      #@notification << u
     end
-    SubscriptionMailer.notification_received(@notification.to_s.html_safe).deliver
+    #SubscriptionMailer.notification_received(@notification.to_s.html_safe).deliver
 
     respond_to do |format|
       format.html { head :no_content }
