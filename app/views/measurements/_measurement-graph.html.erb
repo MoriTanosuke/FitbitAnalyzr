@@ -5,14 +5,14 @@ $(document).ready(function() {
       chart1 = new Highcharts.Chart({
          chart: { renderTo: 'measurement-graph', type: 'line' },
          title: { text: 'Measurements over time' },
-         xAxis: { categories: ['Weight'] },
+         xAxis: { type: 'datetime' },
          yAxis: { title: { text: 'kg' } },
          series: [{
             name: 'Weight',
             data: [<%
 measurements.each do |measurement|
   if not measurement.weight.blank?
-  %><%= measurement.weight %>,<%
+  %>[Date.parse('<%= measurement.date %>'), <%= measurement.weight*1.0 %>],<%
   end
 end %>]
          }]
