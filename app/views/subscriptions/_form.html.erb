@@ -13,12 +13,7 @@
 
   <div class="field">
     <%= f.label :collection_path %><br />
-    <%= f.text_field :collection_path %>
-  </div>
-
-  <div class="field">
-    <%= f.label :subscription_id %> (be careful, this could break your subscription!)<br />
-    <%= f.text_field :subscription_id %>
+    <%= f.select :collection_path, ['activities', 'sleep', 'body'] %>
   </div>
 
   <div class="actions">

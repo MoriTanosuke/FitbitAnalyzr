@@ -5,6 +5,7 @@ class SubscriptionsController < FitbitController
   # GET /subscriptions.json
   def index
     @subscriptions = current_user.subscriptions.order(:created_at)
+    @user = current_user
 
     if not current_user.fitbit.nil?
       begin
@@ -51,20 +52,24 @@ class SubscriptionsController < FitbitController
     @subscription.user_id = current_user.id
     @subscription.subscription_id = current_user.id.to_s
     respond_to do |format|
-      if @subscription.save
-        if not current_user.fitbit.nil?
+      if not current_user.fitbit.nil?
+        if @subscription.save
           path = ['/1/user/-', @subscription.collection_path, 'apiSubscriptions', @subscription.subscription_id + '-' + @subscription.collection_path]
           api = JSON.parse(current_user.fitbit.client.post(path.join('/') + '.json').body)
           flash[:success] = 'Subscription was successfully created.' 
           format.html { redirect_to @subscription }
           format.json { render json: @subscription, status: :created, location: @subscription }
-        end
+        else
+          flash[:error] << @subscription.errors
+          format.html { render action: "new" }
+          format.json { render json: @subscription.errors, status: :unprocessable_entity }
+	end
       else
-        flash[:error] << @subscription.errors
-        format.html { render action: "new" }
-        format.json { render json: @subscription.errors, status: :unprocessable_entity }
+        flash[:error] = 'You are not connected to Fitbit.'
+        format.html { redirect_to @subscription }
+        format.json { render json: @subscription, status: :unprocessable_entity }
       end
-    end
+         end
   end
 
   # DELETE /subscriptions/1

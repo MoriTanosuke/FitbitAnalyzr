@@ -30,4 +30,8 @@
 </ul>
 <% end %>
 
+<% if not @user.fitbit.nil? %>
 <%= link_to 'New Subscription', new_subscription_path %>
+<% else %>
+You have to <%= link_to 'connect to Fitbit', root_path %> before you can create a subscription to automatically import your data.
+<% end %>
