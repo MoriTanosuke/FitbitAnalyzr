@@ -16,7 +16,7 @@ describe SubscriptionsController do
     {}
   end
 
-  describe "POST notify" do
+  describe "POST /notify" do
     it "should acknowledge the notification with HTTP status code 204" do
       pending('post multipart/form with element "updates"')
       post 'notify' #, {:updates => fixture_file_upload(File.join(Rails.root, "spec", "fixtures", "notification.json"), 'form/multipart')}
