@@ -8,9 +8,11 @@ class ActivitiesController < FitbitController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @activities }
-
       if current_user.subscribed?
         format.csv { render :layout => false }
+      else
+        # don't respond
+        format.csv { head :no_content }
       end
     end
   end
