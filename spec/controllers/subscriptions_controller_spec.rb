@@ -19,7 +19,7 @@ describe SubscriptionsController do
   describe "POST notify" do
     it "should acknowledge the notification with HTTP status code 204" do
       pending('post multipart/form with element "updates"')
-      post 'notify' #, {:updates => fixture_file_upload('/textfile.txt', 'form/multipart')}
+      post 'notify' #, {:updates => fixture_file_upload(File.join(Rails.root, "spec", "fixtures", "notification.json"), 'form/multipart')}
       response.response_code.should == 204
     end
   end
