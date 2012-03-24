@@ -21,7 +21,7 @@
   </tr>
 
 <% @activities.each do |activity| %>
-  <tr>
+  <tr class="<%= cycle("odd", "even") %>">
 <td><%= activity.date %></td>
 <td><%= activity.calories %></td>
 <td><%= activity.steps %></td>

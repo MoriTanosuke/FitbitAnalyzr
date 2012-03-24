@@ -11,7 +11,7 @@
   </tr>
 
 <% @measurements.each do |measurement| %>
-  <tr>
+  <tr class="<%= cycle("odd", "even") %>">
     <td><%= measurement.date %></td>
     <td><%= measurement.weight/1.0 %></td>
     <td><%= link_to 'Show', measurement %></td>

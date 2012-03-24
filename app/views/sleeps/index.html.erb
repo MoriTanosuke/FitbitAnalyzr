@@ -17,7 +17,7 @@
 
 <tbody>
 <% @sleeps.each do |sleep| %>
-  <tr>
+  <tr class="<%= cycle("odd", "even") %>">
     <th><%= sleep.date %></th>
     <td><%= sleep.startTime %></th>
     <td><% if not sleep.timeInBed.blank? %><%= sleep.timeInBed*10/6/100.0 %><% end %></td>
