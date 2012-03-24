@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:success] = 'Welcome to Fitbit Analyzr. You are registered. Please log in.'
+        flash[:success] = 'You are registered. Please log in.'
         UserMailer.welcome_email(@user).deliver
         format.html { redirect_to root_path }
         format.json { render :json => @user, :status => :created, :location => @user }
