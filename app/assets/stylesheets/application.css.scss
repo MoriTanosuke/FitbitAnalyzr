@@ -12,6 +12,10 @@ h1,h2,h3,h4,h5,h6 {
   font-family: 'Quicksand', sans-serif;
 }
 
+html {
+  background: #efefef;
+}
+
 body {
   background-image: linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
   background-image: -o-linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
