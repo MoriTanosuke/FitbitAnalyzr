@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    @url = 'http://floating-sunrise-1622.heroku.com/login'
+    @url = 'http://fitbitanalyzr.heroku.com/login'
     mail(:to => user.email, :bcc => 'carsten@kopis.de', :subject => 'Welcome to Fitbit Analyzr')
   end
 
