@@ -11,6 +11,7 @@
     <th>Time in Bed</th>
     <th>Hours Asleep</th>
     <td></td>
+    <td></td>
   </tr>
 </thead>
 
@@ -21,9 +22,8 @@
     <td><%= sleep.startTime %></th>
     <td><% if not sleep.timeInBed.blank? %><%= sleep.timeInBed*10/6/100.0 %><% end %></td>
     <td><% if not sleep.minutesAsleep.blank? %><%= sleep.minutesAsleep*10/6/100.0 %><% end %></td>
-    <td><%= link_to 'Show', sleep %>
-    <%= link_to 'Edit', edit_sleep_path(sleep) %>
-    <%= link_to 'Destroy', sleep, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', sleep %></td>
+    <td><%= link_to 'Destroy', sleep, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </tbody>

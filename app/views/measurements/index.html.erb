@@ -6,9 +6,8 @@
   <tr>
     <th>Date</th>
     <th>Weight</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <td></td>
+    <td></td>
   </tr>
 
 <% @measurements.each do |measurement| %>
@@ -16,7 +15,6 @@
     <td><%= measurement.date %></td>
     <td><%= measurement.weight/1.0 %></td>
     <td><%= link_to 'Show', measurement %></td>
-    <td><%= link_to 'Edit', edit_measurement_path(measurement) %></td>
     <td><%= link_to 'Destroy', measurement, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
