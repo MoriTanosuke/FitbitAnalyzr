@@ -1,0 +1,13 @@
+de:
+  app_title: "fitbit analyzr"
+  home: "Home"
+  activities: "Aktivität"
+  sleeps: "Schlaf"
+  measurements: "Körper"
+  subscriptions: "Aktualisierung"
+  contact: "Kontakt"
+  login: "Anmelden"
+  logout: "Abmelden"
+  register: "Registrieren"
+  name: "Name"
+  password: "Passwort"
