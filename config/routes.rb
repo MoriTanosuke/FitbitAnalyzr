@@ -74,6 +74,7 @@ Fitbit::Application.routes.draw do
   match '/delete', :to => 'users#destroy'
   match '/deauthorize', :to => 'users#deauthorize'
   match '/contact', :to => 'welcome#contact'
+  match '/privacy', :to => 'welcome#privacy'
   match '/notify', :to => 'subscriptions#notify', :via => :post
 
   # You can have the root of your site routed with "root"

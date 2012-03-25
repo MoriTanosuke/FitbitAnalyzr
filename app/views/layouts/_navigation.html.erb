@@ -5,6 +5,7 @@
   <li><%= link_to t(:measurements), measurements_path %></li>
   <li><%= link_to t(:subscriptions), subscriptions_path %></li>
   <li><%= link_to t(:contact), contact_path %></li>
+  <li><%= link_to t(:privacy), privacy_path %></li>
 <% if session[:user_id] != nil %>
   <li><%= link_to t(:logout), logout_path, :method => 'delete' %></li>
 <% else %>

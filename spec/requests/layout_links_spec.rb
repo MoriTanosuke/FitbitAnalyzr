@@ -21,5 +21,10 @@ describe 'LayoutLinks' do
     get '/'
     response.should have_selector('form', :id => 'donate')
   end
+
+  it "should have a 'privacy' link at '/'" do
+    get '/'
+    response.should have_selector('a', :content => 'Privacy')
+  end
 end
 
