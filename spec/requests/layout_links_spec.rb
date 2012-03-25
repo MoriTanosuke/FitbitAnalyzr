@@ -10,13 +10,11 @@ describe 'LayoutLinks' do
   it "should have a 'login' link at '/'" do
     get '/'
     response.should have_selector('a', :content => 'Log in')
-    response.should have_selector('a', :href => '/login')
   end
 
   it "should have a 'register' link at '/'" do
     get '/'
     response.should have_selector('a', :content => 'Register')
-    response.should have_selector('a', :href => '/register')
   end
 
   it "should have a 'donate' button" do
