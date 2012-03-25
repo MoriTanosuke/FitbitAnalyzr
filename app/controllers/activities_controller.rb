@@ -40,17 +40,6 @@ class ActivitiesController < FitbitController
     end
   end
 
-  # GET /activities/1/edit
-  def edit
-    @activity = current_user.activities.find(params[:id])
-    @series = get_series('activities')
-
-    #respond_to do |format|
-    #  format.html # edit.html.erb
-    #  format.json { render json: @activity }
-    #end
-  end
-
   # POST /activities
   # POST /activities.json
   def create
@@ -69,24 +58,9 @@ class ActivitiesController < FitbitController
     end
 
     respond_to do |format|
-      format.html { redirect_to @activity, notice: 'Activity was successfully created.' }
+      flash[:success] = 'Activity was successfully created.'
+      format.html { redirect_to @activity }
       format.json { render json: @activity, status: :created, location: @activity }
-    end
-  end
-
-  # PUT /activities/1
-  # PUT /activities/1.json
-  def update
-    @activity = current_user.activities.find(params[:id])
-
-    respond_to do |format|
-      if @activity.update_attributes(params[:activity])
-        format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @activity.errors, status: :unprocessable_entity }
-      end
     end
   end
 

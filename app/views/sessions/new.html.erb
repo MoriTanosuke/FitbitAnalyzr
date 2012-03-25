@@ -1,11 +1,6 @@
-<div>
-<% if flash[:alert] %>
-<p id="notice"><%= flash[:alert] %></p>
-<% end %>
-
 <%= form_tag do %>
 <fieldset>
-  <legend>Please log in </legend>
+  <legend>Enter your username and password</legend>
 
   <div>
     <label for="name">Name:</label>
@@ -22,5 +17,3 @@
   </div>
 </fieldset>
 <% end %>
-
-</div>

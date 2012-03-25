@@ -10,12 +10,14 @@
 // color definition
 $pink: #f36;
 $gray: #ddd;
+$red: red;
+$green: green;
 
 $odd: #efefef;
 $even: #ffffff;
 
-$flash_error: #ff0000;
-$flash_success: #00ff00;
+$flash_error: $red;
+$flash_success: $green;
 
 // my own definition
 h1,h2,h3,h4,h5,h6 {

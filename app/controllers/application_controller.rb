@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
 
     def authorize
       unless current_user
-        redirect_to login_url, :notice => "Please log in"
+        flash[:error] = 'You are not authorized to view that page.'
+        redirect_to login_url
       end
     end
 

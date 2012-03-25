@@ -32,11 +32,6 @@ class MeasurementsController < FitbitController
     end
   end
 
-  # GET /measurements/1/edit
-  def edit
-    @measurement = Measurement.find(params[:id])
-  end
-
   # POST /measurements
   # POST /measurements.json
   def create
@@ -53,28 +48,11 @@ class MeasurementsController < FitbitController
 
     respond_to do |format|
       if saved
-        format.html { redirect_to @measurement, :notice => 'Measurement was successfully created.' }
+        flash[:success] = 'Measurement was successfully created.'
+        format.html { redirect_to @measurement }
         format.json { render :json => @measurement, :status => :created, :location => @measurement }
       else
         format.html { render :action => "new" }
-        format.json { render :json => @measurement.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /measurements/1
-  # PUT /measurements/1.json
-  def update
-    @measurement = Measurement.find(params[:id])
-
-    # TODO update data for this measurement
-
-    respond_to do |format|
-      if @measurement.update_attributes(params[:measurement])
-        format.html { redirect_to @measurement, :notice => 'Measurement was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render :action => "edit" }
         format.json { render :json => @measurement.errors, :status => :unprocessable_entity }
       end
     end

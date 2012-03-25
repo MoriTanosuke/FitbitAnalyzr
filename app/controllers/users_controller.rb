@@ -66,7 +66,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       # TODO check if fitbit token should be removed
       if @user.update_attributes(params[:user])
-        format.html { redirect_to users_url, :notice => "User #{@user.email} was successfully updated." }
+        flash[:success] = "User #{@user.email} was successfully updated."
+        format.html { redirect_to users_url }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }

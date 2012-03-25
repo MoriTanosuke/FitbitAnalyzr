@@ -33,11 +33,6 @@ class SleepsController < FitbitController
     end
   end
 
-  # GET /sleeps/1/edit
-  def edit
-    @sleep = current_user.sleeps.find(params[:id])
-  end
-
   # POST /sleeps
   # POST /sleeps.json
   def create
@@ -53,26 +48,9 @@ class SleepsController < FitbitController
     end
  
     respond_to do |format|
-      format.html { redirect_to sleeps_path, :notice => 'Sleep was successfully created.' }
+      flash[:success] = 'Sleep was successfully created.'
+      format.html { redirect_to sleeps_path }
       format.json { render :json => sleeps_path, :status => :created, :location => sleeps_path }
-    end
-  end
-
-  # PUT /sleeps/1
-  # PUT /sleeps/1.json
-  def update
-    @sleep = current_user.sleeps.find(params[:id])
-
-    #TODO update data for this sleep entry
-
-    respond_to do |format|
-      if @sleep.update_attributes(params[:sleep])
-        format.html { redirect_to @sleep, :notice => 'Sleep was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @sleep.errors, :status => :unprocessable_entity }
-      end
     end
   end
 

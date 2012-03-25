@@ -76,6 +76,7 @@ class SubscriptionsController < FitbitController
   # DELETE /subscriptions/1.json
   def destroy
     @subscription = current_user.subscriptions.find(params[:id])
+    #TODO move to model Subscription
     if not current_user.fitbit.nil?
       path = ['/1/user/-', @subscription.collection_path, 'apiSubscriptions', @subscription.subscription_id + '-' + @subscription.collection_path]
       current_user.fitbit.client.delete(path.join('/') + '.json')
