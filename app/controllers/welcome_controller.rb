@@ -21,6 +21,9 @@ class WelcomeController < ApplicationController
   def contact
   end
 
+  def privacy
+  end
+
   def authorize
     # do something with the callback
     id = params[:id]

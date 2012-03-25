@@ -5,6 +5,7 @@
   <li><%= link_to 'Measurement', measurements_path %></li>
   <li><%= link_to 'Subscriptions', subscriptions_path %></li>
   <li><%= link_to 'Contact', contact_path %></li>
+  <li><%= link_to 'Privacy', privacy_path %></li>
 <% if session[:user_id] != nil %>
   <li><%= link_to 'Logout', logout_path, :method => 'delete' %></li>
 <% else %>
