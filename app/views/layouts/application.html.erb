@@ -12,11 +12,9 @@
        More info: h5bp.com/b/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>fitbit analyzr</title>
+  <title><%= t(:app_title) %></title>
   <meta name="description" content="Simple application that helps you analyze your quantified self data collected with fitbit">
   <meta name="author" content="Carsten Ringe <carsten@kopis.de>">
-
-  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <%= stylesheet_link_tag "application" %>
@@ -29,7 +27,7 @@
 <body>
   <div id="container">
     <header>
-<h1 class="blue">fitbit analyzr</h1>
+<h1 class="blue"><%= t(:app_title) %></h1>
 <%= render 'layouts/navigation' %>
     </header>
     <div id="main" role="main">
