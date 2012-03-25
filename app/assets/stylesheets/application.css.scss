@@ -7,28 +7,25 @@
 */
 @import url(http://fonts.googleapis.com/css?family=Quicksand:700);
 
-/** my own definition **/
+// color definition
+$pink: #f36;
+$gray: #ddd;
+
+$odd: #efefef;
+$even: #ffffff;
+
+$flash_error: #ff0000;
+$flash_success: #00ff00;
+
+// my own definition
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Quicksand', sans-serif;
 }
 
 html {
-  background: #efefef;
 }
 
 body {
-  background-image: linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
-  background-image: -o-linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
-  background-image: -moz-linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
-  background-image: -webkit-linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
-  background-image: -ms-linear-gradient(bottom, rgb(239,239,239) 20%, rgb(255,255,255) 60%);
-  background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0.2, rgb(239,239,239)),
-    color-stop(0.6, rgb(255,255,255))
-  );
 }
 
 #main {
@@ -37,16 +34,15 @@ body {
 }
 
 header {
-  border-bottom: 2px solid #efefef;
+  border-bottom: 2px solid $gray;
 }
 footer {
-  border-top: 2px solid #ddd;
+  border-top: 2px solid $gray;
 }
 header,footer {
   text-align: center;
-  color: #060606;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 1em; 
+  padding-bottom: 1em;
 
   ul {
     list-style: none;
@@ -61,16 +57,24 @@ header,footer {
 
 a {
   &,&:active,&:visited,&:hover {
-    color: #f36;
+    color: $pink;
   }
 }
 
+.donate {
+  clear: both;
+}
+
+.center {
+  text-align: center;
+}
+
 .error {
-  color: red;
+  color: $flash_error;
 }
 
 .success {
-  color: green;
+  color: $flash_success;
 }
 
 .flash {
@@ -78,8 +82,8 @@ a {
 }
 
 .odd {
-  background-color: #efefef;
+  background-color: $odd;
 }
 .even {
-
+  background-color: $even;
 }
