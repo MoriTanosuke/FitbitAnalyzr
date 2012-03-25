@@ -1,89 +1,71 @@
 /*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require_tree . 
-*/
-@import url(http://fonts.googleapis.com/css?family=Quicksand:700);
+ *= require_tree .
+ */
 
-// color definition
-$pink: #f36;
-$gray: #ddd;
+// colors
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
 
-$odd: #efefef;
-$even: #ffffff;
-
-$flash_error: #ff0000;
-$flash_success: #00ff00;
-
-// my own definition
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'Quicksand', sans-serif;
+// mixins
+@mixin rebase($rebase03,$rebase02,$rebase01,$rebase00,$rebase0,$rebase1,$rebase2,$rebase3) {
+  background-color:$rebase03;
+  color:$rebase0;
+  * { color:$rebase0; }
+  h1,h2,h3,h4,h5,h6 { color:$rebase1; border-color: $rebase0; }
+  a, a:active, a:visited { color: $rebase1; }
+}
+@mixin accentize($accent) {
+  a, a:active, a:visited, code.url { color: $accent; }
+  h1,h2,h3,h4,h5,h6 {color:$accent}
 }
 
-html {
+// html tags
+html, .light { @include rebase($base3,$base2,$base1,$base0,$base00,$base01,$base02,$base03)}
+.dark  { @include rebase($base03,$base02,$base01,$base00,$base0,$base1,$base2,$base3)}
+html * {
+  color-profile: sRGB;
+  rendering-intent: auto;
 }
 
 body {
-}
-
-#main {
-  margin-left: 1em;
-  margin-right: 1em;
+  margin: 0;
+  padding: 0;
 }
 
 header {
-  border-bottom: 2px solid $gray;
-}
-footer {
-  border-top: 2px solid $gray;
-}
-header,footer {
-  text-align: center;
-  padding-top: 1em; 
-  padding-bottom: 1em;
-
+  color: $base3;
+  background: $blue;
+  padding: 0;
+  margin: 0;
+  
   ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
     li {
-      display: block;
     }
   }
-}
-
-a {
-  &,&:active,&:visited,&:hover {
-    color: $pink;
-  }
-}
-
-.donate {
-  clear: both;
-}
-
-.center {
-  text-align: center;
-}
-
-.error {
-  color: $flash_error;
-}
-
-.success {
-  color: $flash_success;
 }
 
 .flash {
   font-weight: bold;
 }
+.error {
+  color: $red;
+}
+.success {
+  color: $cyan;
+}
 
-.odd {
-  background-color: $odd;
-}
-.even {
-  background-color: $even;
-}
