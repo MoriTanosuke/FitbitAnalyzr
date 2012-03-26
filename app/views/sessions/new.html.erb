@@ -1,19 +1,26 @@
+<<<<<<< HEAD
 <%= form_tag do %>
 <fieldset>
   <legend>Enter your username and password</legend>
+=======
+<div>
+<%= form_tag do %>
+<fieldset>
+  <legend><%= t '.please_log_in' %> </legend>
+>>>>>>> d3a6c9eef8b523bd9c0cc29c2aa035a98475fd72
 
   <div>
-    <label for="name">Name:</label>
+    <label for="name"><%= t '.name' %></label>
     <%= text_field_tag :email, params[:email] %>
   </div>
 
   <div>
-    <label for="password">Password:</label>
+    <label for="password"><%= t '.password' %></label>
     <%= password_field_tag :password, params[:password] %>
   </div>
 
   <div>
-    <%= submit_tag "Login" %>
+    <%= submit_tag t '.login' %>
   </div>
 </fieldset>
 <% end %>

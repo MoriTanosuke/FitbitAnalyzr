@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
     def authorize
       unless current_user
-        flash[:error] = 'You are not authorized to view that page.'
+        flash[:error] = "You are not authorized to view that page."
         redirect_to login_url
       end
     end
@@ -29,5 +29,9 @@ class ApplicationController < ActionController::Base
 
     def str(date)
       date.strftime('%Y-%m-%d')
+    end
+
+    def default_url_options(options={})
+      { :locale => I18n.locale }
     end
 end

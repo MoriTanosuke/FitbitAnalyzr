@@ -1,0 +1,17 @@
+<h1>Mass delete data</h1>
+
+<%= form_tag("/activites/delete", :method => 'post') do %>
+<div class="field">
+  <%= label 'from', :from %><br />
+  <%= date_select 'from', :from %>
+</div>
+
+<div class="field">
+  <%= label 'to', :to %><br />
+  <%= date_select 'to', :to %>
+</div>
+
+<div class="actions">
+  <%= submit_tag %>
+</div>
+<% end %>

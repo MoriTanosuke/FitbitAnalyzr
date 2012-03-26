@@ -1,22 +1,22 @@
 Fitbit::Application.routes.draw do
 
-  resources :welcomes
-  resources :activities
-  resources :measurements
-  resources :sleeps
-  resources :users
-  resources :subscriptions
-
-  resources :oauth_consumers do
-    member do
-      get :callback
-      get :callback2
-      match 'client/*endpoint' => 'oauth_consumers#client'
+  scope "(:locale)", :locale => /en|nl/ do
+    resources :welcomes
+    resources :activities
+    resources :measurements
+    resources :sleeps
+    resources :users
+    resources :subscriptions
+  
+    resources :oauth_consumers do
+      member do
+        get :callback
+        get :callback2
+        match 'client/*endpoint' => 'oauth_consumers#client'
+      end
     end
   end
 
-  get "admin" => "admin#index"
-  
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
@@ -80,6 +80,11 @@ Fitbit::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+  root :to => 'welcome#index'
+
+  # You can have the root of your site routed with "root"
+  # just remember to delete public/index.html.
+  match '/:locale' => 'welcome#index'
   root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
