@@ -13,7 +13,7 @@
 <% @measurements.each do |measurement| %>
   <tr class="<%= cycle("odd", "even") %>">
     <td><%= measurement.date %></td>
-    <td><%= measurement.weight/1.0 %></td>
+    <td><%= measurement.weight %></td>
     <td><%= link_to 'Show', measurement %></td>
     <td><%= link_to 'Destroy', measurement, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
