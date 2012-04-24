@@ -23,6 +23,7 @@ end
 
 gem 'json'
 gem "oauth-plugin", ">= 0.4.0.rc2"
+gem 'will_paginate', '~> 3.0.beta'
 
 # Gems used only for assets and not required
 # in production environments by default.

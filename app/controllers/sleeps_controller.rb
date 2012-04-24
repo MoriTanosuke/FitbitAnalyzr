@@ -3,7 +3,7 @@ class SleepsController < FitbitController
   # GET /sleeps
   # GET /sleeps.json
   def index
-    @sleeps = current_user.sleeps.order('date')
+    @sleeps = current_user.sleeps.paginate :page => params[:page], :order => 'date ASC'
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,7 +14,7 @@ class SleepsController < FitbitController
   # GET /sleeps/1
   # GET /sleeps/1.json
   def show
-    @sleep = current_user.sleeps.find(params[:id])
+    @sleep = current_user.sleeps.find_by_id(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -57,7 +57,7 @@ class SleepsController < FitbitController
   # DELETE /sleeps/1
   # DELETE /sleeps/1.json
   def destroy
-    @sleep = current_user.sleeps.find(params[:id])
+    @sleep = current_user.sleeps.paginate :page => params[:page], :id => params[:id]
     @sleep.destroy
 
     respond_to do |format|
@@ -68,7 +68,7 @@ class SleepsController < FitbitController
 
 protected
   def for_date(date)
-    sleep = current_user.sleeps.find_by_date(date)
+    sleep = current_user.sleeps.paginate :page => params[:page], :date => params[:date]
     if sleep.nil? or sleep.user != current_user
       sleep = Sleep.new
       sleep.date = date
