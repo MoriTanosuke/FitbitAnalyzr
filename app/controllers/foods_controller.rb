@@ -43,7 +43,7 @@ class FoodsController < FitbitController
       puts "Updating series=#{s}"
       data[s].each do |day|
         @food = for_date(day['dateTime'])
-        @food.send(s.partition('/')[2].partition('/')[2] + '=', day['value'])
+        @food.send(s.rpartition('/')[2] + '=', day['value'])
         saved = @food.save
         if not saved
           flash[:error] = @food.errors
