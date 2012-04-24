@@ -2,7 +2,7 @@ class ActivitiesController < FitbitController
   # GET /activities
   # GET /activities.json
   def index
-    @activities = current_user.activities.paginate :page => params[:page], :order => 'date ASC'
+    @activities = current_user.activities.order(:date)
     @series = get_series('activities')
 
     respond_to do |format|
@@ -20,7 +20,7 @@ class ActivitiesController < FitbitController
   # GET /activities/1
   # GET /activities/1.json
   def show
-    @activity = current_user.activities.paginate(params[:id])
+    @activity = current_user.activities.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -67,7 +67,7 @@ class ActivitiesController < FitbitController
   # DELETE /activities/1
   # DELETE /activities/1.json
   def destroy
-    @activity = current_user.activities.paginate(params[:id])
+    @activity = current_user.activities.find(params[:id])
     @activity.destroy
 
     respond_to do |format|

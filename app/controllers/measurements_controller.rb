@@ -2,7 +2,7 @@ class MeasurementsController < FitbitController
   # GET /measurements
   # GET /measurements.json
   def index
-    @measurements = current_user.measurements.paginate :page => params[:page], :order => 'date ASC'
+    @measurements = current_user.measurements.order('date')
 
     respond_to do |format|
       format.html # index.html.erb
