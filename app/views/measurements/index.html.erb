@@ -2,6 +2,8 @@
 
 <%= render :partial => "measurement-graph", :locals => {:measurements => @measurements} %>
 
+<%= will_paginate @measurements %>
+
 <table>
   <tr>
     <th>Date</th>
