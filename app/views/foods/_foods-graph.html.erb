@@ -14,7 +14,7 @@ $(document).ready(function() {
   data: [<%
 @foods.each do |a|
 %>
-[Date.parse('<%= a.date %>'), <%= a.send(s.rpartition('/')[2].partition('/')) %>],
+[Date.parse('<%= a.date %>'), <%= a.send(s.rpartition('/')[2].partition('/')[2]) %>],
 <% end %>],
 },
 <% end %>
