@@ -1,0 +1,24 @@
+<%= form_for(@food) do |f| %>
+  <% if @food.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@food.errors.count, "error") %> prohibited this food from being saved:</h2>
+
+      <ul>
+      <% @food.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>Select the start date for the import.</p>
+
+  <div class="field">
+    <%= f.label :date %><br />
+    <%= f.date_select :date %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

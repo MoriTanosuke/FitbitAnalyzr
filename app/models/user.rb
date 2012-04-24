@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :measurements
   has_many :activities
   has_many :subscriptions
+  has_many :foods
 
   def subscribed?
     self.subscribed

@@ -1,5 +1,7 @@
 Fitbit::Application.routes.draw do
 
+  resources :foods
+
   resources :welcomes
   resources :activities
   resources :measurements

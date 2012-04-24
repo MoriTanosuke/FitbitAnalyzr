@@ -138,6 +138,15 @@ class SubscriptionsController < FitbitController
               update.user = user
               update.send(s.partition('/')[2] + '=', day['value'])
               update.save
+            elsif series == 'foods'
+              update = user.foods.find_by_date(day['dateTime'])
+              if update.nil?
+                update = Food.new
+              end
+              update.date = date
+              update.user = user
+              update.send(s.partition('/')[2].partition('/')[2] + '=', day['value'])
+              update.save
             end
           end
         end

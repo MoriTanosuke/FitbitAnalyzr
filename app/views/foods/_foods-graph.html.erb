@@ -1,0 +1,23 @@
+<div id="food-graph"></div>
+<script type="text/javascript">
+var chart1; // globally available
+$(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+         chart: { renderTo: 'food-graph', type: 'line' },
+         title: { text: 'Food' },
+         xAxis: { type: 'datetime' },
+         yAxis: { title: { text: 'Counter' } },
+         series: [
+<% @series.each do |s| %>
+{
+  name: '<%= s.rpartition('/')[2].partition('/')[2] %>',
+  data: [<%
+@foods.each do |a|
+%>
+[Date.parse('<%= a.date %>'), <%= a.send(s.rpartition('/')[2].partition('/')) %>],
+<% end %>],
+},
+<% end %>
+      ]});
+   });
+</script>
