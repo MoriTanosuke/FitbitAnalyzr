@@ -6,6 +6,7 @@
 
 <table>
   <tr>
+    <th>date</th>
     <th>caloriesIn</th>
     <th>water</th>
     <th></th>
@@ -15,6 +16,7 @@
 
 <% @foods.each do |food| %>
   <tr>
+    <td><%= food.date %></td>
     <td><%= food.caloriesIn %></td>
     <td><%= food.water %></td>
     <td><%= link_to 'Show', food %></td>
