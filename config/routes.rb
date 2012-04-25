@@ -7,8 +7,20 @@ Fitbit::Application.routes.draw do
 
   resources :welcomes
   resources :activities
+  controller :activities do
+    get 'clear' => :clear
+  end
+
   resources :measurements
+  controller :measurements do
+    get 'clear' => :clear
+  end
+
   resources :sleeps
+  controller :sleeps do
+    get 'clear' => :clear
+  end
+
   resources :users
   resources :subscriptions
 

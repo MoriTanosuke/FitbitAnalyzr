@@ -24,4 +24,5 @@
 
 <br />
 
+<%= link_to 'Clear all', { :controller => 'measurements', :action => 'clear' }, :confirm => 'Are you sure?'  %>
 <%= link_to 'Import Measurement', new_measurement_path %>
