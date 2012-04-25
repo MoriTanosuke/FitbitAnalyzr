@@ -27,7 +27,10 @@ end
   name: 'Carbs %',
   data: [<%
 @foods.each do |a|
-%>[Date.parse('<%= a.date %>'), <%= a.carbs*4/a.caloriesIn*100.0 %>],<%
+if a.caloriesIn == 0
+  a.caloriesIn = 1
+end
+%>[Date.parse('<%= a.date %>'), <%= (a.carbs*4/a.caloriesIn*100).floor %>],<%
 end
 %>]},
 {
@@ -42,7 +45,10 @@ end
   name: 'Protein %',
   data: [<%
 @foods.each do |a|
-%>[Date.parse('<%= a.date %>'), <%= a.protein*4/a.caloriesIn*100.0 %>],<%
+if a.caloriesIn == 0
+  a.caloriesIn = 1
+end
+%>[Date.parse('<%= a.date %>'), <%= (a.protein*4/a.caloriesIn*100).floor %>],<%
 end
 %>]},
 {
@@ -57,7 +63,10 @@ end
   name: 'Fat %',
   data: [<%
 @foods.each do |a|
-%>[Date.parse('<%= a.date %>'), <%= a.fat*9.0/a.caloriesIn*100.0 %>],<%
+if a.caloriesIn == 0
+  a.caloriesIn = 1
+end
+%>[Date.parse('<%= a.date %>'), <%= (a.fat*9/a.caloriesIn*100).floor %>],<%
 end
 %>],
 },
