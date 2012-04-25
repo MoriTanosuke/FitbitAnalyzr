@@ -47,10 +47,10 @@ class FoodsController < FitbitController
 
         # update from collection too
         logged_food = reload_range(['foods/log'], day['dateTime'], nil)
-        @food.carbs = logged_food['summary']['carbs']
-        @food.protein = logged_food['summary']['protein']
-        @food.fat = logged_food['summary']['fat']
-        @food.fiber = logged_food['summary']['fiber']
+        @food.carbs = logged_food['summary']['carbs'].floor
+        @food.protein = logged_food['summary']['protein'].floor
+        @food.fat = logged_food['summary']['fat'].floor
+        @food.fiber = logged_food['summary']['fiber'].floor
 
         saved = @food.save
         if not saved
