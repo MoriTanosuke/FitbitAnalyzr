@@ -1,6 +1,9 @@
 Fitbit::Application.routes.draw do
 
   resources :foods
+  controller :foods do
+    get 'clear' => :clear
+  end
 
   resources :welcomes
   resources :activities

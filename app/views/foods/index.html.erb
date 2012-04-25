@@ -9,6 +9,10 @@
     <th>date</th>
     <th>caloriesIn</th>
     <th>water</th>
+    <th>carbs</th>
+    <th>protein</th>
+    <th>fat</th>
+    <th>fiber</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,6 +23,10 @@
     <td><%= food.date %></td>
     <td><%= food.caloriesIn %></td>
     <td><%= food.water %></td>
+    <td><%= food.carbs %></td>
+    <td><%= food.protein %></td>
+    <td><%= food.fat %></td>
+    <td><%= food.fiber %></td>
     <td><%= link_to 'Show', food %></td>
     <td><%= link_to 'Edit', edit_food_path(food) %></td>
     <td><%= link_to 'Destroy', food, confirm: 'Are you sure?', method: :delete %></td>
@@ -28,4 +36,5 @@
 
 <br />
 
+<%= link_to 'Clear all', :controller => 'foods', :action => 'clear' %>
 <%= link_to 'New Food', new_food_path %>

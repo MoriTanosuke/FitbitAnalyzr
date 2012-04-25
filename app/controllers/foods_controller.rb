@@ -40,10 +40,18 @@ class FoodsController < FitbitController
     data = reload(get_series('foods'), str(Date.strptime(params[:food].values.join("-"))))
     saved = false
     get_series('foods').each do |s|
-      puts "Updating series=#{s}"
+      #puts "Updating series=#{s}"
       data[s].each do |day|
         @food = for_date(day['dateTime'])
         @food.send(s.rpartition('/')[2] + '=', day['value'])
+
+        # update from collection too
+        logged_food = reload_range(['foods/log'], day['dateTime'], nil)
+        @food.carbs = logged_food['summary']['carbs']
+        @food.protein = logged_food['summary']['protein']
+        @food.fat = logged_food['summary']['fat']
+        @food.fiber = logged_food['summary']['fiber']
+
         saved = @food.save
         if not saved
           flash[:error] = @food.errors
@@ -63,6 +71,19 @@ class FoodsController < FitbitController
   def destroy
     @food = Food.find(params[:id])
     @food.destroy
+
+    respond_to do |format|
+      format.html { redirect_to foods_url }
+      format.json { head :ok }
+    end
+  end
+
+  def clear
+    current_user.foods.each do |food|
+      food.destroy
+    end
+
+    flash[:success] = 'All foods removed.'
 
     respond_to do |format|
       format.html { redirect_to foods_url }

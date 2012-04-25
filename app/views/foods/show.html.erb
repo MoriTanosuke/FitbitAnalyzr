@@ -1,5 +1,39 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <b>Date:</b>
+  <%= @food.date %>
+</p>
+
+<p>
+  <b>CaloriesIn:</b>
+  <%= @food.caloriesIn %>
+</p>
+
+<p>
+  <b>Water:</b>
+  <%= @food.water %>
+</p>
+
+<p>
+  <b>Carbs:</b>
+  <%= @food.carbs %>
+</p>
+
+<p>
+  <b>Protein:</b>
+  <%= @food.protein %>
+</p>
+
+<p>
+  <b>Fat:</b>
+  <%= @food.fat %>
+</p>
+
+<p>
+  <b>Fiber:</b>
+  <%= @food.fiber %>
+</p>
 
 <%= link_to 'Edit', edit_food_path(@food) %> |
 <%= link_to 'Back', foods_path %>

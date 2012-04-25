@@ -7,17 +7,46 @@ $(document).ready(function() {
          title: { text: 'Food' },
          xAxis: { type: 'datetime' },
          yAxis: { title: { text: 'Counter' } },
-         series: [
-<% @series.each do |s| %>
-{
+         series: [<%
+@series.each do |s|
+%>{
   name: '<%= s.rpartition('/')[2] %>',
   data: [<%
 @foods.each do |a|
-%>
-[Date.parse('<%= a.date %>'), <%= a.send(s.rpartition('/')[2]) %>],
-<% end %>],
+%>[Date.parse('<%= a.date %>'), <%= a.send(s.rpartition('/')[2]) %>],<%
+end %>],},<%
+end
+%>{
+  name: 'Carbs',
+  data: [<%
+@foods.each do |a|
+%>[Date.parse('<%= a.date %>'), <%= a.carbs %>],<%
+end
+%>]},
+{
+  name: 'Protein',
+  data: [<%
+@foods.each do |a|
+%>[Date.parse('<%= a.date %>'), <%= a.protein %>],<%
+end
+%>],
 },
-<% end %>
+{
+  name: 'Fat',
+  data: [<%
+@foods.each do |a|
+%>[Date.parse('<%= a.date %>'), <%= a.fat %>],<%
+end
+%>],
+},
+{
+  name: 'Fiber',
+  data: [<%
+@foods.each do |a|
+%>[Date.parse('<%= a.date %>'), <%= a.fiber %>],<%
+end
+%>]
+},
       ]});
    });
 </script>

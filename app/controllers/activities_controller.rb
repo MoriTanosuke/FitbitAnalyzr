@@ -76,6 +76,20 @@ class ActivitiesController < FitbitController
     end
   end
 
+  def clear
+    current_user.activities.each do |a|
+      a.destroy
+    end
+
+    flash[:success] = 'All activities removed.'
+
+    respond_to do |format|
+      format.html { redirect_to foods_url }
+      format.json { head :ok }
+    end
+  end
+
+
 protected
   def for_date(date)
     a = current_user.activities.find_by_date(date)

@@ -70,7 +70,21 @@ class MeasurementsController < FitbitController
     end
   end
 
-  protected
+  def clear
+    current_user.measurements.each do |m|
+      m.destroy
+    end
+
+    flash[:success] = 'All measurements removed.'
+
+    respond_to do |format|
+      format.html { redirect_to foods_url }
+      format.json { head :ok }
+    end
+  end
+
+
+protected
 
   def find_for(date)
     measurement = Measurement.find_by_date(date)

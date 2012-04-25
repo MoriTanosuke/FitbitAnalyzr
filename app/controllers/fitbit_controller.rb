@@ -2,7 +2,13 @@ class FitbitController < ApplicationController
 
   def api_response(user, s, startDate, endDate)
     if not user.fitbit.nil?
-      user.fitbit.client.get(['/1/user/-', s, 'date', startDate, endDate].join('/') + '.json').body
+      path = ['/1/user/-', s, 'date', startDate, endDate]
+      #remove nil path elements
+      path.delete(nil)
+      # now build path and add extension
+      path = path.join('/') + '.json'
+      # query fitbit now
+      user.fitbit.client.get(path).body
     end
   end
 
@@ -29,7 +35,7 @@ class FitbitController < ApplicationController
     api.each do |a|
       tapi = tapi.merge(a[0].gsub('-', '/') => a[1])
     end
-    puts tapi
+    #puts tapi
     return tapi
   end
 

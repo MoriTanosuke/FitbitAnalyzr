@@ -66,6 +66,20 @@ class SleepsController < FitbitController
     end
   end
 
+  def clear
+    current_user.sleeps.each do |s|
+      s.destroy
+    end
+
+    flash[:success] = 'All sleeps removed.'
+
+    respond_to do |format|
+      format.html { redirect_to foods_url }
+      format.json { head :ok }
+    end
+  end
+
+
 protected
   def for_date(date)
     sleep = current_user.sleeps.find_by_date(date)
