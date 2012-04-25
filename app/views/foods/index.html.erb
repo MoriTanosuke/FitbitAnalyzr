@@ -36,5 +36,5 @@
 
 <br />
 
-<%= link_to 'Clear all', :controller => 'foods', :action => 'clear' %>
+<%= link_to 'Clear all', :confirm => 'Are you sure?', :controller => 'foods', :action => 'clear' %>
 <%= link_to 'New Food', new_food_path %>
