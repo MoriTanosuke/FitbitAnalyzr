@@ -26,6 +26,7 @@ class FoodsController < FitbitController
   # GET /foods/new.json
   def new
     @food = Food.new
+    @food.user = current_user
     @series = get_series('foods')
 
     respond_to do |format|
@@ -51,6 +52,12 @@ class FoodsController < FitbitController
         @food.protein = logged_food['summary']['protein'].floor
         @food.fat = logged_food['summary']['fat'].floor
         @food.fiber = logged_food['summary']['fiber'].floor
+        if @food.caloriesIn.nil?
+          @food.caloriesIn = 0
+        end
+        if @food.water.nil?
+          @food.water = 0
+        end
 
         saved = @food.save
         if not saved
