@@ -3,7 +3,7 @@ class CustomDataController < ApplicationController
   # GET /custom_data.json
   def index
     @custom_data = current_user.custom_data.paginate :page => params[:page]
-    @mapped_values = build_map @custom_data
+    @mapped_values = build_map @custom_data || []
 
     respond_to do |format|
       format.html # index.html.erb
@@ -101,14 +101,12 @@ protected
     # get all uniq custom_data names and add them as series
     data.collect{|d| d.name}.uniq.each do |name|
       values = []
-      current_user.custom_data.find_all_by_name(name).each{|c| values.push({:date => c.date, :value => c.value})}
+      current_user.custom_data.find_all_by_name(name).each do |c|
+        values.push({:date => c.date, :value => c.value})
+      end
       series.push({:name => name, :values => values})
     end
 
     return series
-#{:name => 'test1', :values => [
-#  {:date => '2012-04-01', :value => 1},
-#  {:date => '2012-04-02', :value => 2},
-#]},
   end
 end
