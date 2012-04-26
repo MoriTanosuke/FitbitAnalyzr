@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Date:</b>
+  <%= @custom_datum.date %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @custom_datum.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @custom_datum.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_custom_datum_path(@custom_datum) %> |
+<%= link_to 'Back', custom_data_path %>

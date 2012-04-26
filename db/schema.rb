@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120424171129) do
+ActiveRecord::Schema.define(:version => 20120426175607) do
 
   create_table "activities", :force => true do |t|
     t.decimal  "user_id"
@@ -41,6 +41,15 @@ ActiveRecord::Schema.define(:version => 20120424171129) do
   end
 
   add_index "consumer_tokens", ["token"], :name => "index_consumer_tokens_on_token", :unique => true
+
+  create_table "custom_data", :force => true do |t|
+    t.date     "date"
+    t.string   "name"
+    t.decimal  "value"
+    t.decimal  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "foods", :force => true do |t|
     t.date     "date"

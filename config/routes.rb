@@ -1,5 +1,10 @@
 Fitbit::Application.routes.draw do
 
+  resources :custom_data
+  controller :custom_data do
+    get 'clear' => :clear
+  end
+
   resources :foods
   controller :foods do
     get 'clear' => :clear

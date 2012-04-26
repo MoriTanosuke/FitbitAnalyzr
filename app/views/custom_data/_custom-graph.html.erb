@@ -1,0 +1,23 @@
+<div id="custom-graph"></div>
+<script type="text/javascript">
+var chart1; // globally available
+$(document).ready(function() {
+      chart1 = new Highcharts.Chart({
+         chart: { renderTo: 'custom-graph', type: 'line' },
+         title: { text: 'Custom Data' },
+         xAxis: { type: 'datetime' },
+         yAxis: { title: { text: 'Counter' } },
+         series: [
+<% @mapped_values.each do |series| %>
+{
+  name: '<%= series[:name] %>',
+  data: [
+<% series[:values].each do |a| %>
+[Date.parse('<%= a[:date] %>'), <%= a[:value] %>],
+<% end %>
+  ]
+},
+<% end %>
+]});
+});
+</script>
