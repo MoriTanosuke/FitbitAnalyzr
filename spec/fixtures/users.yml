@@ -1,11 +1,11 @@
 one:
-  id: 1
+  id: 99
   email: 'test1@localhost.org'
   password_digest: <%= BCrypt::Password.create('test1') %>
   subscribed: false
 
 two:
-  id: 2
+  id: 98
   email: 'test2@localhost.org'
   password_digest: <%= BCrypt::Password.create('test2') %>
   subscribed: true

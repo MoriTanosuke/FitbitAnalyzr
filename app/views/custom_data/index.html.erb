@@ -1,0 +1,32 @@
+<h1>Listing custom_data</h1>
+
+<%= render :partial => 'custom-graph' %>
+
+<%= will_paginate @custom_data %>
+
+<table>
+  <tr>
+    <th>date</th>
+    <th>name</th>
+    <th>value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @custom_data.each do |custom_datum| %>
+  <tr>
+    <td><%= custom_datum.date %></td>
+    <td><%= custom_datum.name %></td>
+    <td><%= custom_datum.value %></td>
+    <td><%= link_to 'Show', custom_datum %></td>
+    <td><%= link_to 'Edit', edit_custom_datum_path(custom_datum) %></td>
+    <td><%= link_to 'Destroy', custom_datum, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Clear all', { :controller => 'custom_data', :action => 'clear' }, :confirm => 'Are you sure?' %>
+<%= link_to 'New Custom datum', new_custom_datum_path %>

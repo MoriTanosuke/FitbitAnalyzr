@@ -15,7 +15,6 @@
     <th>fiber</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @foods.each do |food| %>
@@ -28,7 +27,6 @@
     <td><%= food.fat %></td>
     <td><%= food.fiber %></td>
     <td><%= link_to 'Show', food %></td>
-    <td><%= link_to 'Edit', edit_food_path(food) %></td>
     <td><%= link_to 'Destroy', food, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
