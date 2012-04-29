@@ -26,7 +26,7 @@ class WelcomeController < ApplicationController
   end
 
   def feedback
-    FeedbackMailer.feedback(params[:email], params[:subject], params[:text]).deliver
+    FeedbackMailer.feedback(params[:feedback]).deliver
     flash[:success] = "Mail sent."
     respond_to do |format|
       format.html { redirect_to contact_path }

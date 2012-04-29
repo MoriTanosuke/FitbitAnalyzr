@@ -5,18 +5,18 @@
 <%= form_tag('/feedback') do %>
 
 <div class="field">
-  <%= label :email, 'Email:' %><br />
-  <%= text_field :email, :email %>
+  <%= label :feedback, :email, 'Email:' %><br />
+  <%= text_field :feedback, :email %>
 </div>
 
 <div class="field">
-  <%= label :subject, 'Subject:' %><br />
-  <%= text_field :subject, :subject %>
+  <%= label :feedback, :subject, 'Subject:' %><br />
+  <%= text_field :feedback, :subject %>
 </div>
 
 <div class="field">
-  <%= label :text, 'Text:' %><br />
-  <%= text_area :text, :text %>
+  <%= label :feedback, :text, 'Text:' %><br />
+  <%= text_area :feedback, :text %>
 </div>
 
 <%= submit_tag 'Send' %>
