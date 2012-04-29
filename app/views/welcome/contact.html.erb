@@ -1,3 +1,24 @@
 <h2>Contact</h2>
 
 <p>Feel free to contact me at <a href="https://github.com/MoriTanosuke/FitbitAnalyzr">the project page for Fitbit Analyzr</a>.</p>
+
+<%= form_tag('/feedback') do %>
+
+<div class="field">
+  <%= label :email, 'Email:' %><br />
+  <%= text_field :email, :email %>
+</div>
+
+<div class="field">
+  <%= label :subject, 'Subject:' %><br />
+  <%= text_field :subject, :subject %>
+</div>
+
+<div class="field">
+  <%= label :text, 'Text:' %><br />
+  <%= text_area :text, :text %>
+</div>
+
+<%= submit_tag 'Send' %>
+
+<% end %>

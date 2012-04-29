@@ -19,6 +19,19 @@ class WelcomeController < ApplicationController
   end
 
   def contact
+    # TODO put email into request is user is logged in
+    if logged_in?
+      @user = current_user.email
+    end
+  end
+
+  def feedback
+    FeedbackMailer.feedback(params[:email], params[:subject], params[:text]).deliver
+    flash[:success] = "Mail sent."
+    respond_to do |format|
+      format.html { redirect_to contact_path }
+      format.json { head :ok }
+    end
   end
 
   def privacy

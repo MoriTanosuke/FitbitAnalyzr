@@ -11,6 +11,7 @@ Fitbit::Application.routes.draw do
   end
 
   resources :welcomes
+
   resources :activities
   controller :activities do
     get 'clear' => :clear
@@ -92,6 +93,7 @@ Fitbit::Application.routes.draw do
   #     resources :products
   #   end
 
+  match '/feedback', :to => 'welcome#feedback'
   match '/register', :to => 'users#new'
   match '/delete', :to => 'users#destroy'
   match '/deauthorize', :to => 'users#deauthorize'
