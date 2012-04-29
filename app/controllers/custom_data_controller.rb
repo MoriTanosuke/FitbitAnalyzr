@@ -14,7 +14,7 @@ class CustomDataController < ApplicationController
   # GET /custom_data/1
   # GET /custom_data/1.json
   def show
-    @custom_datum = CustomDatum.find(params[:id])
+    @custom_datum = current_user.custom_data.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,7 +35,7 @@ class CustomDataController < ApplicationController
 
   # GET /custom_data/1/edit
   def edit
-    @custom_datum = CustomDatum.find(params[:id])
+    @custom_datum = current_user.custom_data.find(params[:id])
   end
 
   # POST /custom_data
@@ -58,7 +58,7 @@ class CustomDataController < ApplicationController
   # PUT /custom_data/1
   # PUT /custom_data/1.json
   def update
-    @custom_datum = CustomDatum.find(params[:id])
+    @custom_datum = current_user.custom_data.find(params[:id])
 
     respond_to do |format|
       if @custom_datum.update_attributes(params[:custom_datum])
