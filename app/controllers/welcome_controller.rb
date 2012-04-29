@@ -26,9 +26,13 @@ class WelcomeController < ApplicationController
   end
 
   def feedback
-    FeedbackMailer.feedback(params[:feedback]).deliver
-    flash[:success] = "Mail sent."
     respond_to do |format|
+      if verify_recaptcha
+        FeedbackMailer.feedback(params[:feedback]).deliver
+        flash[:success] = "Mail sent."
+      else
+        flash[:error] = "Captcha invalid."
+      end
       format.html { redirect_to contact_path }
       format.json { head :ok }
     end
