@@ -145,7 +145,7 @@ class SubscriptionsController < FitbitController
               end
               update.date = date
               update.user = user
-              update.send(s.partition('/')[2].partition('/')[2] + '=', day['value'])
+              update.send(s.rpartition('/')[2] + '=', day['value'])
               update.save
             end
           end
