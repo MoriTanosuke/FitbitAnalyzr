@@ -48,10 +48,27 @@ class FoodsController < FitbitController
 
         # update from collection too
         logged_food = reload_range(['foods/log'], day['dateTime'], nil)
-        @food.carbs = logged_food['summary']['carbs'].floor
-        @food.protein = logged_food['summary']['protein'].floor
-        @food.fat = logged_food['summary']['fat'].floor
-        @food.fiber = logged_food['summary']['fiber'].floor
+        # TODO refactor this into a lood instead of separate IFs
+        if logged_food['summary']['carbs'].nil?
+          @food.carbs = 0
+        else
+          @food.carbs = logged_food['summary']['carbs'].floor
+        end
+        if logged_food['summary']['protein'].nil?
+          @food.protein = 0
+        else
+          @food.protein = logged_food['summary']['protein'].floor
+        end
+        if logged_food['summary']['fat'].nil?
+          @food.fat = 0
+        else
+          @food.fat = logged_food['summary']['fat'].floor
+        end
+        if logged_food['summary']['fiber'].nil?
+          @food.fiber = 0
+        else
+          @food.fiber = logged_food['summary']['fiber'].floor
+        end
         if @food.caloriesIn.nil?
           @food.caloriesIn = 0
         end
