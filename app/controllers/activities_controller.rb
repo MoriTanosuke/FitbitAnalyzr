@@ -2,7 +2,7 @@ class ActivitiesController < FitbitController
   # GET /activities
   # GET /activities.json
   def index
-    @activities = current_user.activities.paginate :page => params[:page], :order => 'date ASC'
+    @activities = current_user.activities.paginate :page => params[:page], :order => 'date ASC', :per_page => per_page(params[:per_page])
     @series = get_series('activities')
 
     respond_to do |format|

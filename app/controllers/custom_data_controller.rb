@@ -2,7 +2,7 @@ class CustomDataController < ApplicationController
   # GET /custom_data
   # GET /custom_data.json
   def index
-    @custom_data = current_user.custom_data.paginate :page => params[:page]
+    @custom_data = current_user.custom_data.paginate :page => params[:page], :per_page => per_page(params[:per_page])
     @mapped_values = build_map @custom_data || []
 
     respond_to do |format|

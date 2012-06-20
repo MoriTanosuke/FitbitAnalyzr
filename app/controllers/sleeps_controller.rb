@@ -3,7 +3,7 @@ class SleepsController < FitbitController
   # GET /sleeps
   # GET /sleeps.json
   def index
-    @sleeps = current_user.sleeps.paginate :page => params[:page], :order => 'date ASC'
+    @sleeps = current_user.sleeps.paginate :page => params[:page], :order => 'date ASC', :per_page => per_page(params[:per_page])
 
     respond_to do |format|
       format.html # index.html.erb

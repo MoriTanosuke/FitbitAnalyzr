@@ -2,7 +2,7 @@ class FoodsController < FitbitController
   # GET /foods
   # GET /foods.json
   def index
-    @foods = current_user.foods.paginate :page => params[:page], :order => 'date asc'
+    @foods = current_user.foods.paginate :page => params[:page], :order => 'date asc', :per_page => per_page(params[:per_page])
     @series = get_series('foods')
 
     respond_to do |format|

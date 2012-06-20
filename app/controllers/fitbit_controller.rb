@@ -1,5 +1,14 @@
 class FitbitController < ApplicationController
 
+  def per_page(number)
+    if not params[:per_page].nil? and params[:per_page].to_i > 0
+      per_page = params[:per_page]
+    else
+      per_page = 30
+    end
+
+  end
+
   def api_response(user, s, startDate, endDate)
     if not user.fitbit.nil?
       path = ['/1/user/-', s, 'date', startDate, endDate]
