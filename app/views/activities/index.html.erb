@@ -2,6 +2,7 @@
 
 <%= render :partial => 'activity-graph', :local => {:activities => @activities, :series => @series} %>
 
+Show <%= select_tag :per_page, options_for_select([7,14,30,90,180,365], @per_page), :onchange => "if(this.value){window.location='?per_page='+this.value;}" %>
 <%= will_paginate @activities %>
 
 <table>

@@ -2,9 +2,9 @@ class FitbitController < ApplicationController
 
   def per_page(number)
     if not params[:per_page].nil? and params[:per_page].to_i > 0
-      per_page = params[:per_page]
+      @per_page = [params[:per_page].to_i, 999].min
     else
-      per_page = 30
+      @per_page = 30
     end
 
   end
