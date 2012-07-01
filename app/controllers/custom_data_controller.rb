@@ -1,4 +1,4 @@
-class CustomDataController < ApplicationController
+class CustomDataController < FitbitController
   # GET /custom_data
   # GET /custom_data.json
   def index

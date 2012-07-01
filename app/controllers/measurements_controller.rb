@@ -78,7 +78,7 @@ class MeasurementsController < FitbitController
     flash[:success] = 'All measurements removed.'
 
     respond_to do |format|
-      format.html { redirect_to foods_url }
+      format.html { redirect_to measurements_url }
       format.json { head :ok }
     end
   end

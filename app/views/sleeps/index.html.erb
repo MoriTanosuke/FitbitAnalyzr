@@ -28,8 +28,8 @@ Show <%= select_tag :per_page, options_for_select([7,14,30,90,180,365], @per_pag
   <tr class="<%= cycle("odd", "even") %>">
     <th><%= sleep.date %></th>
     <td><%= sleep.startTime %></th>
-    <td><% if not sleep.timeInBed.blank? %><%= sleep.timeInBed*10/6/100.0 %><% end %></td>
-    <td><% if not sleep.minutesAsleep.blank? %><%= sleep.minutesAsleep*10/6/100.0 %><% end %></td>
+    <td><%= sleep.timeInBed %></td>
+    <td><%= sleep.minutesAsleep %></td>
     <td><%= sleep.awakeningsCount %></td>
     <td><%= sleep.minutesAwake %></td>
     <td><%= sleep.minutesToFallAsleep %></td>

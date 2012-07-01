@@ -84,7 +84,7 @@ class ActivitiesController < FitbitController
     flash[:success] = 'All activities removed.'
 
     respond_to do |format|
-      format.html { redirect_to foods_url }
+      format.html { redirect_to activities_url }
       format.json { head :ok }
     end
   end
