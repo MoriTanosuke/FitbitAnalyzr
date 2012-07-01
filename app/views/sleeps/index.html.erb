@@ -13,6 +13,11 @@ Show <%= select_tag :per_page, options_for_select([7,14,30,90,180,365], @per_pag
     <th>Start</th>
     <th>Time in Bed</th>
     <th>Hours Asleep</th>
+    <th>Awakening Count</th>
+    <th>Minutes awake</th>
+    <th>Minutes to fall asleep</th>
+    <th>Efficiency</th>
+    <th>Minutes after wakeup</th>
     <td></td>
     <td></td>
   </tr>
@@ -25,6 +30,11 @@ Show <%= select_tag :per_page, options_for_select([7,14,30,90,180,365], @per_pag
     <td><%= sleep.startTime %></th>
     <td><% if not sleep.timeInBed.blank? %><%= sleep.timeInBed*10/6/100.0 %><% end %></td>
     <td><% if not sleep.minutesAsleep.blank? %><%= sleep.minutesAsleep*10/6/100.0 %><% end %></td>
+    <td><%= sleep.awakeningsCount %></td>
+    <td><%= sleep.minutesAwake %></td>
+    <td><%= sleep.minutesToFallAsleep %></td>
+    <td><%= sleep.efficiency %></td>
+    <td><%= sleep.minutesAfterWakeup %></td>
     <td><%= link_to 'Show', sleep %></td>
     <td><%= link_to 'Destroy', sleep, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

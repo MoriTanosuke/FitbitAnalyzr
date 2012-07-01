@@ -6,13 +6,13 @@ $(document).ready(function() {
          chart: { renderTo: 'sleep-graph', type: 'line' },
          title: { text: 'Sleep over time' },
          xAxis: { type: 'datetime' },
-         yAxis: { title: { text: 'Hours' } },
+         yAxis: { title: { text: 'Minutes' } },
          series: [{
             name: 'In Bed',
             data: [<%
 sleeps.each do |sleep|
   if not sleep.timeInBed.blank?
-  %>[Date.parse('<%= sleep.date %>'), <%= sleep.timeInBed*10/6/100.0 %>],<%
+  %>[Date.parse('<%= sleep.date %>'), <%= sleep.timeInBed %>],<%
   end
 end %>]
          },{
@@ -20,8 +20,38 @@ end %>]
             data: [<%
 sleeps.each do |sleep|
   if not sleep.minutesAsleep.blank?
-  %>[Date.parse('<%= sleep.date %>'), <%= sleep.minutesAsleep*10/6/100.0 %>],<%
+  %>[Date.parse('<%= sleep.date %>'), <%= sleep.minutesAsleep %>],<%
   end
+end %>]
+         },{
+            name: 'Awakening Count',
+            data: [<%
+sleeps.each do |sleep|
+  %>[Date.parse('<%= sleep.date %>'), <%= sleep.awakeningsCount %>],<%
+end %>]
+         },{
+            name: 'Minutes awake',
+            data: [<%
+sleeps.each do |sleep|
+  %>[Date.parse('<%= sleep.date %>'), <%= sleep.minutesAwake %>],<%
+end %>]
+         },{
+            name: 'Min. fall asleep',
+            data: [<%
+sleeps.each do |sleep|
+  %>[Date.parse('<%= sleep.date %>'), <%= sleep.minutesToFallAsleep %>],<%
+end %>]
+         },{
+            name: 'Efficiency',
+            data: [<%
+sleeps.each do |sleep|
+  %>[Date.parse('<%= sleep.date %>'), <%= sleep.efficiency %>],<%
+end %>]
+         },{
+            name: 'Min. after wakeup',
+            data: [<%
+sleeps.each do |sleep|
+  %>[Date.parse('<%= sleep.date %>'), <%= sleep.minutesAfterWakeup %>],<%
 end %>]
          }]
       });
