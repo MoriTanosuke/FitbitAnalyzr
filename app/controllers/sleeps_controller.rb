@@ -40,7 +40,6 @@ class SleepsController < FitbitController
     saved = false
     get_series('sleep').each do |s|
       data[s].each do |day|
-        logger.debug "data=#{day} date=#{day['dateTime']} value=#{day['value']}"
         @sleep = for_date(day['dateTime'])
 	# get variable name from last part of series
         @sleep.send(s.rpartition('/')[2] + '=', day['value'])

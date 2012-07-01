@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426175607) do
+ActiveRecord::Schema.define(:version => 20120701092010) do
 
   create_table "activities", :force => true do |t|
     t.decimal  "user_id"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20120426175607) do
     t.integer  "efficiency"
     t.integer  "minutesAsleep"
     t.integer  "timeInBed"
-    t.integer  "startTime"
+    t.string   "startTime"
     t.integer  "minutesAwake"
     t.integer  "minutesAfterWakeup"
     t.decimal  "user_id"
