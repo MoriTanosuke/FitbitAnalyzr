@@ -40,10 +40,14 @@ class SleepsController < FitbitController
     saved = false
     get_series('sleep').each do |s|
       data[s].each do |day|
+        logger.debug "data=#{day} date=#{day['dateTime']} value=#{day['value']}"
         @sleep = for_date(day['dateTime'])
 	# get variable name from last part of series
         @sleep.send(s.rpartition('/')[2] + '=', day['value'])
         saved = @sleep.save
+        if not saved
+          flash[:error] = @sleep.errors
+        end
       end
     end
  
@@ -83,7 +87,7 @@ class SleepsController < FitbitController
 protected
   def for_date(date)
     sleep = current_user.sleeps.find_by_date(date)
-    if sleep.nil? or sleep.user != current_user
+    if sleep.nil?
       sleep = Sleep.new
       sleep.date = date
       sleep.user = current_user
