@@ -18,7 +18,9 @@ $(document).ready(function() {
             formatter: function() {
               if(this.series.name == 'Start time') {
                 return (this.y + '').replace(/(.{2})/, '$1:') + 'h';
-              } else if(this.series.name == 'Awakening Count' || this.series.name == 'Efficiency') {
+              } if(this.series.name == 'Efficiency') {
+                return this.y + '%';
+              } else if(this.series.name == 'Awakening Count') {
                 return this.y;
               } else {
                 return this.y + 'min';
