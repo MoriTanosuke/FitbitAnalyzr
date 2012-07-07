@@ -1,5 +1,10 @@
 <div id="sleep-graph"></div>
 <script type="text/javascript">
+function pad(str, length) {
+  while (str.length < length)
+    str = '0' + str;
+  return str;
+}
 var chart1; // globally available
 $(document).ready(function() {
       chart1 = new Highcharts.Chart({
@@ -17,7 +22,7 @@ $(document).ready(function() {
          tooltip: {
             formatter: function() {
               if(this.series.name == 'Start time') {
-                return (this.y + '').replace(/(.{2})/, '$1:') + 'h';
+                return pad(this.y + '', 4).replace(/(.{2})/, '$1:') + 'h';
               } if(this.series.name == 'Efficiency') {
                 return this.y + '%';
               } else if(this.series.name == 'Awakening Count') {
