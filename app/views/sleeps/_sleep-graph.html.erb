@@ -6,8 +6,13 @@ $(document).ready(function() {
          chart: { renderTo: 'sleep-graph', type: 'line' },
          title: { text: 'Sleep over time' },
          xAxis: { type: 'datetime' },
-         yAxis: { title: { text: 'Minutes' } },
+         yAxis: [{ title: { text: 'Minutes' }},
+                 { title: { text: 'Start times' },
+                   opposite: true }],
          series: [{
+            name: 'Start time',
+            data: []
+          },{
             name: 'In Bed',
             data: [<%
 sleeps.each do |sleep|
