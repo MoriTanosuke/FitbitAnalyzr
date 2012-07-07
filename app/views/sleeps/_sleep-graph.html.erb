@@ -6,12 +6,30 @@ $(document).ready(function() {
          chart: { renderTo: 'sleep-graph', type: 'line' },
          title: { text: 'Sleep over time' },
          xAxis: { type: 'datetime' },
-         yAxis: [{ title: { text: 'Minutes' }},
+         yAxis: [{ title: { text: 'Minutes' } },
                  { title: { text: 'Start times' },
+                   labels: {
+                     formatter: function() {
+                       return this.value() + 'h';
+                     }
+                   },
                    opposite: true }],
+         tooltip: {
+            formatter: function() {
+              if(this.series.name == 'Start time') {
+                return (this.y + '').replace(/(.{2})/, '$1:') + 'h';
+              } else {
+                return this.y + 'min';
+              }
+            }},
          series: [{
+            yaxis: 1,
+            type: 'spline',
             name: 'Start time',
-            data: []
+            data: [<%
+sleeps.each do |sleep|
+  %>[Date.parse('<%= sleep.date %>'), <%= sleep.startTime.gsub(':', '') %>],<%
+end %>]
           },{
             name: 'In Bed',
             data: [<%
