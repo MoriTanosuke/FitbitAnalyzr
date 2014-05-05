@@ -3,6 +3,7 @@
     <th>Email</th>
     <th>Password digest</th>
     <th>Fitbit token</th>
+    <th>Last login</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,6 +17,7 @@
 if not user.fitbit.nil?
   %><%= user.fitbit.token %><%
 end %></td>
+    <td><%= user.last_login %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>

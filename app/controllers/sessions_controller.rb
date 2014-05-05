@@ -7,6 +7,8 @@ class SessionsController < ApplicationController
     user = User.find_by_email(params[:email])
     if user and user.authenticate(params[:password])
       session[:user_id] = user.id
+      user.last_login = today
+      user.save()
       redirect_to :controller => 'welcome'
     else
       flash[:error] = 'Invalid user/password combination'

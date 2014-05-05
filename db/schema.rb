@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701092010) do
+ActiveRecord::Schema.define(:version => 20140505175810) do
 
   create_table "activities", :force => true do |t|
     t.decimal  "user_id"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20120701092010) do
     t.string   "email"
     t.boolean  "subscribed",      :default => false
     t.string   "role",            :default => "default"
+    t.date     "last_login"
   end
 
 end
