@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_filter :require_admin, :only => [:index, :show]
   skip_before_filter :authorize, :only => [:new, :create]
 
   # GET /users
   # GET /users.json
   def index
-    @users = [User.find(current_user)]
+    #@users = [User.find(current_user.id)]
+    @users = User.all()
 
     respond_to do |format|
       format.html # index.html.erb
@@ -110,3 +112,4 @@ class UsersController < ApplicationController
   end
 
 end
+

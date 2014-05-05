@@ -19,6 +19,12 @@ class ApplicationController < ActionController::Base
       session[:user_id] != nil
     end
 
+    def require_admin
+      unless current_user.role == 'admin'
+        redirect_to "/", notice: "You are not allowed to view that page"
+      end
+    end
+
     def current_user
       User.find_by_id(session[:user_id])
     end
