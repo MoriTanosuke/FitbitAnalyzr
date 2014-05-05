@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     #@users = [User.find(current_user.id)]
-    @users = User.all()
+    @users = User.find(:all, :order => "email ASC")
 
     respond_to do |format|
       format.html # index.html.erb
