@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       user.last_login = today
       user.save()
+      UserMailer.login_email(user).deliver
       redirect_to :controller => 'welcome'
     else
       flash[:error] = 'Invalid user/password combination'
