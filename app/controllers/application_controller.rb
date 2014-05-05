@@ -36,4 +36,20 @@ class ApplicationController < ActionController::Base
     def str(date)
       date.strftime('%Y-%m-%d')
     end
+
+    def clean_user(user_id)
+      current_user = User.find_by_id(user_id)
+      current_user.sleeps.where("date < date('#{Date.today - 31}')").each do |a|
+        a.delete
+      end
+      current_user.foods.where("date < date('#{Date.today - 31}')").each do |a|
+        a.delete
+      end
+      current_user.activities.where("date < date('#{Date.today - 31}')").each do |a|
+        a.delete
+      end
+      current_user.measurements.where("date < date('#{Date.today - 31}')").each do |a|
+        a.delete
+      end
+    end
 end

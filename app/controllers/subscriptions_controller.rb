@@ -102,6 +102,7 @@ class SubscriptionsController < FitbitController
       sid = u['subscriptionId']
       series = u['collectionType']
       uid = sid[0, sid.index('-')]
+      clean_user(uid)
       user = User.find_by_id(uid)
       if not user.nil?
         puts "update #{series} on #{date} for #{user.email}"
