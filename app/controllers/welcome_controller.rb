@@ -10,9 +10,11 @@ class WelcomeController < ApplicationController
     if not @user.nil? and not @user.fitbit.nil?
       begin
         devices = JSON.parse(@user.fitbit.client.get('/1/user/-/devices.json', { 'Accept' => 'application/json' }).body)
-        # TODO make sure devices exist
-        @lastSync = devices[0]['lastSyncTime']
-        @battery = devices[0]['battery']
+        # make sure devices exist
+	if not devices.nil? and not devices[0].nil?
+	  @lastSync = devices[0]['lastSyncTime']
+          @battery = devices[0]['battery']
+       end
       rescue SocketError
         logger.error "Can not talk to fitbit"
       end
