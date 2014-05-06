@@ -22,5 +22,5 @@ Continuous Integration
 
 
 [0]: http://www.fitbit.com/
-[1]: http://fitbitanalyzr.heroku.com
+[1]: http://fitbitanalyzr.herokuapp.com
 [2]: https://github.com/MoriTanosuke/FitbitAnalyzr/issues?state=open
