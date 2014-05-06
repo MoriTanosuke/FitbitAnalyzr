@@ -11,6 +11,7 @@ So I decided to create my own application. You can see it **and use it** at
 Latest Changes
 ==============
 
+* limit data to last 31 days to avoid running into the limits of the free heroku postgres database
 * pagination on all data pages
 
 To see what I want to add next, take a look at [the roadmap][2].
